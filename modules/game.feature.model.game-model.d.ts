@@ -23,6 +23,9 @@ declare global {
       removeChoiceGui(this: this, choiceGui: ig.GuiElementBase): void;
       isAssistMode(this: this): boolean;
       getCombatRankDropRate(this: this): number;
+      enterTitle(this: this): void;
+      enterReset(this: this): void;
+      enterRunning(this: this): void;
       enterPrevSubState(this: this): void;
       enterMenu(this: this, force?: boolean | null): void;
     }

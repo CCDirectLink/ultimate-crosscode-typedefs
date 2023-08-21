@@ -67,7 +67,7 @@ declare global {
         settings?: S | null,
         showAppearEffects?: boolean | null,
       ): E;
-      isTeleporting(this: this): boolean;
+      reset(this: this): void;
       teleport(
         mapName: string,
         marker?: ig.TeleportPosition,
@@ -75,6 +75,7 @@ declare global {
         clearCache?: boolean | null,
         reloadCache?: boolean | null,
       ): void;
+      isTeleporting(this: this): boolean;
       // TODO: map data
       loadLevel(this: this, data: any, clearCache?: boolean, reloadCache?: boolean): void;
       loadingComplete(this: this): void;

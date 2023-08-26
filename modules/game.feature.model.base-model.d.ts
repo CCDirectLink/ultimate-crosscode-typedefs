@@ -15,7 +15,7 @@ declare global {
       function notifyObserver<M extends sc.Model = sc.Model>(
         model: M,
         message: number, // TODO: can the message enum be somehow inferred here?
-        data: unknown,
+        data?: unknown,
       ): void;
       function isObserver<M extends sc.Model = sc.Model>(model: M, observer: Observer<M>): boolean;
     }

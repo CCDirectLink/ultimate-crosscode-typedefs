@@ -159,7 +159,8 @@ declare global {
       actions: Record<ig.KEY, boolean>;
       mouse: Vec2;
       ignoreKeyboard: boolean;
-
+      
+      keydown(this: this, action: LiteralUnion<ig.Input.KnownAction>): boolean;
       bind(this: this, key: ig.KEY, action: LiteralUnion<ig.Input.KnownAction>): void;
       unbind(this: this, key: ig.KEY): void;
       state(this: this, action: LiteralUnion<ig.Input.KnownAction>): boolean;

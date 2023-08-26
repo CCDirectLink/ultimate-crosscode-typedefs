@@ -11,6 +11,16 @@ export {};
 
 declare global {
   namespace sc {
+    interface CombatFlyLevel {
+      vel: number;
+      stun: number;
+      jump: number;
+      bounciness?: number;
+      airFriction?: number;
+      far?: boolean;
+    }
+    var COMBAT_FLY_LEVEL: Record<string, CombatFlyLevel>;
+
     enum SHIELD_RESULT {
       NONE = 0,
       REGULAR = 1,
@@ -41,6 +51,7 @@ declare global {
     }
     interface BasicCombatant extends sc.ActorEntity, sc.GetCombatant, sc.GetCombatantRoot {
       combo: sc.BasicCombatant.Combo;
+      tmpTarget: sc.BasicCombatant;
     }
     interface BasicCombatantConstructor extends ImpactClass<BasicCombatant> {}
     var BasicCombatant: BasicCombatantConstructor;
@@ -48,22 +59,29 @@ declare global {
 
   namespace ig.ENTITY {
     interface Combatant extends sc.BasicCombatant {
+      party: sc.COMBATANT_PARTY
       params: sc.CombatParams;
       invincibleTimer: number;
       shieldsConnections: sc.CombatantShieldConnection[];
+      effects: Record<string, ig.EffectSheet>;
 
-      setTarget(this: this, combatant: sc.BasicCombatant, fixed?: boolean | null): void;
+      setTarget(this: this, combatant: sc.BasicCombatant, fixed?: Optional<boolean>): void;
       onPreDamageModification(
         this: this,
         modifications: unknown,
         damagingEntity: sc.BasicCombatant.DamagingEntity,
         attackInfo: sc.AttackInfo,
-        partEntity: sc.BasicCombatant.DamagingEntity | null | undefined,
+        partEntity: Optional<sc.BasicCombatant.DamagingEntity>,
         damageResult: sc.CombatParams.DamageResult,
         shieldResult: sc.SHIELD_RESULT,
       ): boolean;
+      heal(this: this, healInfo: sc.HealInfoType, hideNumbers?: boolean): void;
+      // only natively exists on ig.ENTITY.Player, but a function of this signature is expected.
+      onHeal?(this: this, healInfo: sc.HealInfoType, amount: number): void;
     }
-    interface CombatantConstructor extends ImpactClass<Combatant> {}
+    interface CombatantConstructor extends ImpactClass<Combatant> {
+      new (x: number, y: number, z: number, settings: ig.Entity.Settings): ig.ENTITY.Combatant
+    }
     var Combatant: CombatantConstructor;
   }
 }

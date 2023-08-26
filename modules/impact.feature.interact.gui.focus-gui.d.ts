@@ -9,6 +9,7 @@ declare global {
       active: boolean;
       keepPressed: boolean;
       pressed: boolean;
+      keepMouseFocus: boolean;
 
       focusGained(this: this): void;
       focusLost(this: this): void;
@@ -17,9 +18,10 @@ declare global {
       canPlayFocusSounds(this: this): boolean;
       setPressed(this: this, pressed: boolean): void;
       setActive(this: this, active: boolean): void;
+      isSameAs(this: this, other: ig.FocusGui): boolean;      
     }
     interface FocusGuiConstructor extends ImpactClass<FocusGui> {
-      new (active?: boolean, keepPressed?: boolean): FocusGui;
+      new (active?: boolean, keepPressed?: boolean): ig.FocusGui;
     }
     var FocusGui: FocusGuiConstructor;
   }

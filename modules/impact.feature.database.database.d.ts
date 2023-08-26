@@ -11,6 +11,8 @@ declare global {
         enemies: { [id: string]: EnemyData };
         shops: { [id: string]: ShopData };
         traders: { [id: string]: sc.TradeModel.Trader };
+        chapters: Chapter[];
+        toggleSets: { [name: string]: ToggleSet }
       }
 
       interface EnemyData {
@@ -23,7 +25,7 @@ declare global {
 
       interface EnemyDescriptionBlock {
         text: ig.LangLabel.Data;
-        condition?: string | null;
+        condition?: Optional<string>;
       }
 
       interface ShopData {
@@ -44,6 +46,22 @@ declare global {
         item: sc.ItemID;
         condition?: string;
         price?: number;
+      }
+
+      interface Chapter {
+        name: ig.LangLabel;
+        plotline: number;
+        prefix?: ig.LangLabel;
+        // this is not used in any capacity, but it is present
+        condition?: string;
+      }
+
+      interface ToggleSet {
+        type: "SINGLE" | "MULTI";
+        name: ig.LangLabel.Data;
+        order: number;
+        color: string;
+        items: sc.ItemID[];
       }
     }
     interface Database extends ig.SingleLoadable {

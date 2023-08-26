@@ -58,5 +58,7 @@ declare global {
       BEGONE_ICE: Modifier;
     }
     var MODIFIERS: MODIFIERS;
+
+    type ModifierList = Partial<Record<keyof sc.MODIFIERS, number>>
   }
 }

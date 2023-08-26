@@ -15,8 +15,12 @@ declare global {
 
     interface ItemStatusDefaultBar extends ig.GuiElementBase {
       type: sc.MENU_BAR_TYPE;
-      currentNumber: sc.NumberGui;
+      maxValue: number;
+      currentValue: number;
+      targetValue: number;
       maxNumber: sc.NumberGui;
+      currentNumber: sc.NumberGui;
+      barHeight: number;      
     }
     interface ItemStatusDefaultBarConstructor extends ImpactClass<ItemStatusDefaultBar> {
       new (

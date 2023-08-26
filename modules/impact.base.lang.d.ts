@@ -13,7 +13,7 @@ declare global {
       grammarReplace(
         template: string,
         substitution: sc.TextLike,
-        unknownValue?: any | null, // TODO
+        unknownValue?: Optional<any>, // TODO
       ): string;
     }
     interface LangConstructor extends ImpactClass<Lang> {}
@@ -26,19 +26,19 @@ declare global {
     }
     interface LangLabel extends ig.Class {
       value: string;
-      data: ig.LangLabel.Data | null | undefined;
+      data: Optional<ig.LangLabel.Data>;
       langUid: number;
-      originFile: string | null | undefined;
+      originFile: Optional<string>;
 
       toString(this: this): string;
     }
     interface LangLabelConstructor extends ImpactClass<LangLabel> {
-      new (data: ig.LangLabel.Data | null | undefined): LangLabel;
+      new (data: Optional<ig.LangLabel.Data>): LangLabel;
 
-      setOriginFile(file: string | null | undefined): void;
-      getOriginFile(): string | null | undefined;
-      getText(data: ig.LangLabel.Data, allowEmpty?: boolean | null): string;
-      bakeVars<T extends string | ig.LangLabel | null | undefined>(value: T): T;
+      setOriginFile(file: Optional<string>): void;
+      getOriginFile(): Optional<string>;
+      getText(data: ig.LangLabel.Data, allowEmpty?: Optional<boolean>): string;
+      bakeVars<T extends string | Optional<ig.LangLabel>>(value: T): T;
     }
     var LangLabel: LangLabelConstructor;
   }

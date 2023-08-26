@@ -6,3 +6,15 @@
 // requires game.feature.gui.hud.item-timer-hud
 // requires game.feature.model.options-model
 // requires game.feature.gui.hud.key-hud
+
+export {};
+
+declare global {
+    namespace sc {
+        interface StatusUpperGui extends ig.GuiElementBase {}
+        interface StatusUpperGuiConstructor extends ImpactClass<StatusUpperGui> {
+            new (): StatusUpperGui;
+        }
+        let StatusUpperGui: StatusUpperGuiConstructor
+    }
+}

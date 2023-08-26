@@ -39,13 +39,13 @@ declare global {
       getActiveElement(this: this): sc.ShopItemButton;
       changeCount(this: this, direction: 1 | -1): void;
       playSound(this: this, direction: 1 | -1, repeater: boolean): void;
-      updateListEntries(this: this, resetCounters?: boolean | null): void;
+      updateListEntries(this: this, resetCounters?: Optional<boolean>): void;
       createBuyList(
         this: this,
-        refocus?: boolean | null,
-        fromMouse?: boolean | null,
-        skipSounds?: boolean | null,
-        sortType?: sc.SORT_TYPE | null,
+        refocus?: Optional<boolean>,
+        fromMouse?: Optional<boolean>,
+        skipSounds?: Optional<boolean>,
+        sortType?: Optional<sc.SORT_TYPE>,
       ): void;
       scrapSellList(this: this, shopItems: sc.ItemID[]): void;
       scrapBuyList(this: this, shopItems: ig.Database.ShopItem[]): void;
@@ -59,6 +59,7 @@ declare global {
       cycleRight: sc.ButtonGui;
 
       show(this: this): void;
+      cycleSellPages(this: this, dir: number): void;
     }
     interface ShopPageCounterConstructor extends ImpactClass<ShopPageCounter> {}
     var ShopPageCounter: ShopPageCounterConstructor;

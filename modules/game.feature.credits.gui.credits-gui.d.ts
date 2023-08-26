@@ -32,7 +32,9 @@ declare global {
         ): void;
       }
       interface CreditSectionConstructor extends ImpactClass<CreditSection> {}
-      var CreditSection: CreditSectionConstructor;
+    }
+    interface GUI {
+      CreditSection: GUI.CreditSectionConstructor;
     }
   }
 }

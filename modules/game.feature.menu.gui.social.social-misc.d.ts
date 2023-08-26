@@ -24,6 +24,23 @@ declare global {
     interface SocialInfoBoxConstructor extends ImpactClass<SocialInfoBox> {}
     var SocialInfoBox: SocialInfoBoxConstructor;
 
+    interface SocialPartyBox extends ig.GuiElementBase {
+      lea: null; //it exists but is never assigned to.
+      members: sc.SocialPartyMember[];
+
+      updatePartyMembers(this: this): void;
+      show(this: this, update: boolean): void;
+      hide(this: this, skip: boolean): void;
+    }
+    interface SocialPartyBoxConstructor extends ImpactClass<SocialPartyBox> {
+      new (): SocialPartyBox;
+    }
+    let SocialPartyBox: SocialPartyBoxConstructor;
+
+    interface SocialPartyMember extends sc.MenuPanel {}
+    interface SocialPartyMemberConstructor extends ImpactClass<SocialPartyMember> {}
+    let SocialPartyMember: SocialPartyMemberConstructor
+
     interface SocialBaseInfoBox extends ig.GuiElementBase {
       exp: sc.ItemStatusDefaultBar;
       hp: sc.ItemStatusDefaultBar;

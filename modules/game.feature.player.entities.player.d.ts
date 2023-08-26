@@ -50,10 +50,15 @@ declare global {
         block: number;
         prefDir: Vec2;
         type: Charging.Type;
+        executeLevel: number;
       }
 
       interface ActionKey {
         actionKey: 'ATTACK_SPECIAL' | 'THROW_SPECIAL' | 'GUARD_SPECIAL' | 'DASH_SPECIAL';
+      }
+
+      interface Gui {
+        crosshair: ig.ENTITY.Crosshair
       }
     }
     interface Player extends sc.PlayerBaseEntity {
@@ -64,11 +69,22 @@ declare global {
       regenFactor: number;
       model: sc.PlayerModel;
       attackCounter: number;
+      dashCount: number;
+      dashAttackCount: number;
+      maxDash: number;
+      jumpPoint: Vec2;
+      jumpForwardDir: Vec2;
+      gui: Player.Gui;
+      dashTimer: number;
+      dashBlock: number;
+      charging: ig.ENTITY.Player.Charging;
       isPlayer: true;
-
+      
       updateSkinAura(this: this): void;
       updateModelStats(this: this, a: boolean): void;
-      getMaxChargeLevel(this: this, actionKey: Player.ActionKey): number;
+      showChargeEffect(this: this, level: number): void;
+      getMaxChargeLevel(this: this, actionKey: Player.ActionKey): 0 | 1 | 2 | 3;
+      getChargeAction(this: this, chargeType: ig.ENTITY.Player.Charging.Type, level: number): string;
       gatherInput(this: this): ig.ENTITY.Player.PlayerInput;
       handleStateStart(
         this: this,
@@ -76,6 +92,7 @@ declare global {
         inputState: ig.ENTITY.Player.PlayerInput,
       ): void;
       onPerfectDash(this: this): void;
+      onHeal(this: this, healInfo: sc.HealInfo.Settings | sc.HealInfo, amount: number): void
     }
     interface PlayerConstructor extends ImpactClass<Player> {}
     var Player: PlayerConstructor;

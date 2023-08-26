@@ -29,8 +29,8 @@ declare global {
         path: string,
         charHeight: number,
         firstChar?: number, // can't be null
-        sizeIndex?: number | null,
-        color?: string | null,
+        sizeIndex?: Optional<number>,
+        color?: Optional<string>,
       ): Font;
 
       ALIGN: typeof Font$ALIGN;
@@ -54,7 +54,7 @@ declare global {
         text: string,
         maxWidth: number,
         linePadding: number,
-        bestRatio: number | null | undefined,
+        bestRatio: Optional<number>,
         commands: ig.TextCommand[],
       ): string;
       getCharWidth(this: this, code: number): number;
@@ -78,10 +78,10 @@ declare global {
 
     namespace TextBlock {
       interface Settings {
-        speed?: ig.TextBlock.SPEED | null;
-        textAlign?: ig.Font.ALIGN | null;
-        maxWidth?: number | null;
-        bestRatio?: number | null;
+        speed?: Optional<ig.TextBlock.SPEED>;
+        textAlign?: Optional<ig.Font.ALIGN>;
+        maxWidth?: Optional<number>;
+        bestRatio?: Optional<number>;
         linePadding?: number;
       }
 
@@ -98,7 +98,7 @@ declare global {
     }
     interface TextBlock extends ig.Class {
       font: ig.MultiFont;
-      maxWidth?: number | null;
+      maxWidth?: Optional<number>;
       parsedText: string;
       commands: ig.TextCommand[];
       speed: ig.TextBlock.SPEED;
@@ -109,11 +109,11 @@ declare global {
       currentCmd: number;
       currentSpeed: number;
       timer: number;
-      onFinish: (() => void) | null | undefined;
+      onFinish: Optional<(() => void)>;
       prerendered: boolean;
-      drawCallback: ig.TextBlock.DrawCallback | null | undefined;
+      drawCallback: Optional<ig.TextBlock.DrawCallback>;
       buffer: ig.ImageAtlasFragment;
-      bestRatio?: number | null;
+      bestRatio?: Optional<number>;
       linePadding: number;
 
       setText(this: this, text: sc.TextLike): void;
@@ -138,7 +138,7 @@ declare global {
         text: string,
         commands: ig.TextCommand[] | null,
         font: ig.MultiFont,
-        ignoreCommands?: boolean | null,
+        ignoreCommands?: Optional<boolean>,
       ): string;
     }
     var TextParser: TextParser;

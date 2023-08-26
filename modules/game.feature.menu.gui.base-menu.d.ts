@@ -9,8 +9,8 @@ declare global {
 
       addObservers(this: this): void;
       removeObservers(this: this): void;
-      showMenu(this: this): void;
-      hideMenu(this: this): void;
+      showMenu(this: this, previousMenu?: sc.BaseMenu, prevSubmenu?: sc.MENU_SUBMENU): void;
+      hideMenu(this: this, afterMenu?: sc.BaseMenu, nextSubmenu?: sc.MENU_SUBMENU): void;
       exitMenu(this: this): void;
     }
     interface BaseMenuConstructor extends ImpactClass<BaseMenu> {

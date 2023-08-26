@@ -21,6 +21,12 @@ declare global {
     }
     var SaveSlotButton: SaveSlotButtonConstructor;
 
+    interface SaveSlotLocation extends ig.GuiElementBase {
+      setLocation(this: this, save: ig.SaveSlot.Data): void;
+    }
+    interface SaveSlotLocationConstructor extends ImpactClass<SaveSlotLocation> {}
+    var SaveSlotLocation: SaveSlotLocationConstructor;
+
     interface SaveSlotChapter extends ig.GuiElementBase {
       textGui: sc.TextGui;
       chapterGui: sc.NumberGui;

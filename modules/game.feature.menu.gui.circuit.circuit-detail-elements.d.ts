@@ -15,7 +15,7 @@ declare global {
       costCP: sc.TextGui;
       activate: sc.ButtonGui;
 
-      _setContent(this: this, chainMode?: boolean | null): void;
+      _setContent(this: this, chainMode?: Optional<boolean>): void;
     }
     interface CircuitNodeMenuConstructor extends ImpactClass<CircuitNodeMenu> {
       new (scrollHook: ig.GuiHook): CircuitNodeMenu;

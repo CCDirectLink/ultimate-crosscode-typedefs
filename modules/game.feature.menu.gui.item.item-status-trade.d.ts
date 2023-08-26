@@ -33,8 +33,8 @@ declare global {
         new (
           itemSource: sc.Inventory.ItemSource,
           itemID: number,
-          hasSubText?: boolean | null,
-          noMaxWidth?: boolean | null,
+          hasSubText?: Optional<boolean>,
+          noMaxWidth?: Optional<boolean>,
         ): BaseEntryType;
       }
     }

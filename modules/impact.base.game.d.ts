@@ -42,19 +42,33 @@ declare global {
         windowFocusChanged: Addons.EventHandlersArr<'onWindowFocusChanged'>;
       }
 
-      type TeleportLoadHint = 'NEW' | 'LOAD' | null | undefined;
+      type TeleportLoadHint = Optional<'NEW' | 'LOAD'>;
     }
     interface Game extends ig.Class {
       paused: boolean;
+      mapName: string;
       entities: ig.Entity[];
+      events: ig.EventManager;
       physics: ig.Physics;
       playerEntity: ig.ENTITY.Player;
       addons: Game.Addons;
 
       getEntityByName<E extends ig.Entity>(this: this, name: string): E;
+      getEntitiesInCircle(
+        center: Vec3,
+        radius: number,
+        yScale: number,
+        zHeight: number,
+        dir: Vec2,
+        startAngle: number,
+        endAngle: number,
+        exception?: ig.Entity,
+        moreExceptions?: ig.Entity[],
+        rectangular?: boolean
+      ): ig.Entity[];
       getEntitiesByType<E extends ig.Entity, S extends ig.Entity.Settings>(
         this: this,
-        type: new (x: number, y: number, z: number, settings: S) => ig.Entity,
+        type: new (x: number, y: number, z: number, settings: S) => E | string,
       ): E[];
       createPlayer(this: this): void;
       getErrorData(this: this, gameInfo: Record<string, unknown>): void;
@@ -64,22 +78,23 @@ declare global {
         x: number,
         y: number,
         z: number,
-        settings?: S | null,
-        showAppearEffects?: boolean | null,
+        settings?: Optional<S>,
+        showAppearEffects?: Optional<boolean>,
       ): E;
       reset(this: this): void;
       teleport(
         mapName: string,
-        marker?: ig.TeleportPosition,
+        marker?: Optional<ig.TeleportPosition>,
         hint?: ig.Game.TeleportLoadHint,
-        clearCache?: boolean | null,
-        reloadCache?: boolean | null,
+        clearCache?: Optional<boolean>,
+        reloadCache?: Optional<boolean>,
       ): void;
       isTeleporting(this: this): boolean;
       // TODO: map data
       loadLevel(this: this, data: any, clearCache?: boolean, reloadCache?: boolean): void;
       loadingComplete(this: this): void;
       update(this: this): void;
+      varsChangedDeferred(this: this): void;
     }
     interface GameConstructor extends ImpactClass<Game> {
       new (): Game;
@@ -99,7 +114,7 @@ declare global {
       onTeleport?(
         this: this,
         map: string,
-        teleportPosition?: ig.TeleportPosition | null,
+        teleportPosition?: Optional<ig.TeleportPosition>,
         hint?: ig.Game.TeleportLoadHint,
       ): void;
 
@@ -140,49 +155,49 @@ declare global {
         | {
             marker: string;
 
-            pos?: Vec3 | null;
-            size?: Vec2 | null;
-            face?: Vec2 | null;
+            pos?: Optional<Vec3>;
+            size?: Optional<Vec2>;
+            face?: Optional<Vec2>;
 
-            level?: number | null;
-            baseZPos?: number | null;
+            level?: Optional<number>;
+            baseZPos?: Optional<number>;
           }
         | {
             pos: Vec3;
             size: Vec2;
             face: Vec2;
 
-            marker?: string | null;
+            marker?: Optional<string>;
 
-            level?: number | null;
-            baseZPos?: number | null;
+            level?: Optional<number>;
+            baseZPos?: Optional<number>;
           };
     }
     interface TeleportPosition extends ig.Class {
-      pos: Vec3 | null | undefined;
-      face: Vec2 | null | undefined;
-      marker: string | null | undefined;
+      pos: Optional<Vec3>;
+      face: Optional<Vec2>;
+      marker: Optional<string>;
       level: number;
       baseZPos: number;
-      size: Vec2 | null | undefined;
+      size: Optional<Vec2>;
 
       setFromData(
         this: this,
-        marker?: string | null,
-        pos?: Vec3 | null,
-        face?: Vec2 | null,
-        level?: number | null,
-        baseZPos?: number | null,
-        size?: Vec2 | null,
+        marker?: Optional<string>,
+        pos?: Optional<Vec3>,
+        face?: Optional<Vec2>,
+        level?: Optional<number>,
+        baseZPos?: Optional<number>,
+        size?: Optional<Vec2>,
       ): void;
       setFromJson(this: this, data: ig.TeleportPosition.Settings): void;
       getJson(this: this): ig.TeleportPosition.Settings;
     }
     interface TeleportPositionConstructor extends ImpactClass<TeleportPosition> {
-      new (marker?: string | null): TeleportPosition;
+      new (marker?: Optional<string>): TeleportPosition;
 
       createFromJson(
-        settings: ig.TeleportPosition.Settings | null | undefined,
+        settings: Optional<ig.TeleportPosition.Settings>,
       ): ig.TeleportPosition;
     }
     var TeleportPosition: TeleportPositionConstructor;

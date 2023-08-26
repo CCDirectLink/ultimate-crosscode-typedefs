@@ -6,8 +6,8 @@ export {};
 declare global {
   namespace sc {
     interface ItemDropType {
-      preCollect?: boolean | null;
-      fly?: boolean | null;
+      preCollect?: Optional<boolean>;
+      fly?: Optional<boolean>;
     }
     interface ITEM_DROP_TYPE {
       ENEMY: sc.ItemDropType;

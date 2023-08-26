@@ -23,5 +23,29 @@ declare global {
       ): ArenaRoundEndButtons;
     }
     var ArenaRoundEndButtons: ArenaRoundEndButtonsConstructor;
+
+    namespace ArenaSummary{
+      interface Entry extends ig.SimpleGui {
+        keyGui: sc.TextGui;
+        valueGui: sc.NumberGui;
+      }
+      interface EntryConstructor extends ImpactClass<Entry> {
+        new(
+          a: string,
+          b: number,
+          d: number,
+          g: unknown,
+          h: unknown,
+          i: boolean,
+          j: boolean,
+          k: unknown
+        ): Entry;
+      }
+    }
+    interface ArenaSummary {}
+    interface ArenaSummaryConstructor extends ImpactClass<ArenaSummary> {
+      Entry: ArenaSummary.EntryConstructor
+    }
+    var ArenaSummary: ArenaSummaryConstructor;
   }
 }

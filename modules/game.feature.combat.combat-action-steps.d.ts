@@ -38,14 +38,59 @@ declare global {
             | 'PART_TARGET_ROOT';
           key: string;
         }
+
+        type TargetFunction = (combatant: sc.BasicCombatant, key?: string) => sc.BasicCombatant;
       }
       interface SET_TEMP_TARGET extends ig.ActionStepBase {
-        kind: (combatant: sc.BasicCombatant, key?: string) => sc.BasicCombatant;
+        kind: SET_TEMP_TARGET.TargetFunction;
       }
       interface SET_TEMP_TARGET_CONSTRUCTOR extends ImpactClass<SET_TEMP_TARGET> {
         new (settings: SET_TEMP_TARGET.Settings): SET_TEMP_TARGET;
       }
       var SET_TEMP_TARGET: SET_TEMP_TARGET_CONSTRUCTOR;
+
+      namespace SET_CLOSE_TEMP_TARGET {
+        interface Settings {
+          searchType?: string;
+          distance?: number;
+          ignoreCurrentTarget?: boolean;
+          prevHitBehavior?: string;
+        }
+
+        interface SearchType {
+          angle: number;
+          radius: number;
+          facePriority?: boolean;
+        }
+      }
+      interface SET_CLOSE_TEMP_TARGET extends ig.ActionStepBase {
+        searchType: SET_CLOSE_TEMP_TARGET.SearchType;
+      }
+      interface SET_CLOSE_TEMP_TARGET_CONSTRUCTOR extends ImpactClass<SET_CLOSE_TEMP_TARGET> {
+        new (settings: SET_CLOSE_TEMP_TARGET.Settings): SET_CLOSE_TEMP_TARGET;
+      }
+      var SET_CLOSE_TEMP_TARGET: SET_CLOSE_TEMP_TARGET_CONSTRUCTOR;
+
+      type TargetFunction = (entity: ig.ENTITY.Combatant) => ig.ENTITY.Combatant | null;
+
+      namespace ADD_ACTION_BUFF {
+        interface Settings {
+          target: string;
+          stats: string[];
+          name?: string;
+          hacked?: boolean;
+        }
+      }
+      interface ADD_ACTION_BUFF extends ig.ActionStepBase {
+        target: TargetFunction;
+        stats: string[];
+        name?: string;
+        hacked?: boolean;
+      }
+      interface ADD_ACTION_BUFF_CONSTRUCTOR extends ImpactClass<ADD_ACTION_BUFF> {
+        new (settings: ADD_ACTION_BUFF.Settings): ADD_ACTION_BUFF;
+      }
+      var ADD_ACTION_BUFF: ADD_ACTION_BUFF_CONSTRUCTOR;
     }
   }
 }

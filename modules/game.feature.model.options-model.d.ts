@@ -210,6 +210,7 @@ declare global {
     var KeyBinder: KeyBinderConstructor;
 
     interface OptionModel extends ig.GameAddon, sc.Model, ig.Storage.Listener {
+      hdMode: boolean;
       hasChanged: boolean;
       values: ig.Storage.GlobalsData.Options;
 

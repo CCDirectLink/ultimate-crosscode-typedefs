@@ -23,12 +23,12 @@ declare global {
       namespace SHOW_FOOD_ICON {
         interface Settings {
           icon: keyof typeof sc.FOOD_SPRITE;
-          offset?: Vec2 | null;
+          offset?: Optional<Vec2>;
         }
       }
       interface SHOW_FOOD_ICON extends ActionStepBase {
         icon: number;
-        offset?: Vec2 | null;
+        offset?: Optional<Vec2>;
 
         start(this: this, target: ig.ENTITY.Combatant): void;
       }

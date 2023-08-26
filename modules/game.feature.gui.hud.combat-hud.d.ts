@@ -30,14 +30,18 @@ declare global {
     }
     var CombatSkipGui: CombatSkipGuiConstructor;
 
-    interface CombatUpperHud extends ig.GuiElementBase, sc.Model.Observer {
-      gfx: ig.Image;
-      ninepatch: ig.NinePatch;
-      sub: {
+    namespace CombatUpperHud {
+      interface Sub {
         empty: sc.CombatUpperHud.CONTENT_GUI.EMPTY;
         ranked: sc.CombatUpperHud.CONTENT_GUI.RANKED;
         pvp: sc.CombatUpperHud.CONTENT_GUI.PVP;
-      };
+      }
+    }
+
+    interface CombatUpperHud extends ig.GuiElementBase, sc.Model.Observer {
+      gfx: ig.Image;
+      ninepatch: ig.NinePatch;
+      sub: CombatUpperHud.Sub;
       currentSub: sc.CombatUpperHud.ContentGui;
 
       updateSubGui(this: this, isRanked: boolean, isPvp: boolean): void;

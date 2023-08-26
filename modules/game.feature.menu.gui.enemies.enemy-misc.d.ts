@@ -21,10 +21,10 @@ declare global {
 
     interface EnemyEntryButton extends sc.ListBoxButton {
       key: number;
-      level: number;
+      level: sc.NumberGui;
     }
     interface EnemyEntryButtonConstructor extends ImpactClass<EnemyEntryButton> {
-      new (text: sc.TextLike, key?: string | null, level?: number | null): EnemyEntryButton;
+      new (text: sc.TextLike, key?: Optional<string>, level?: Optional<number>): EnemyEntryButton;
     }
     var EnemyEntryButton: EnemyEntryButtonConstructor;
   }

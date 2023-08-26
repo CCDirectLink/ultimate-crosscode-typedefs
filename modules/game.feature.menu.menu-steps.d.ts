@@ -17,6 +17,7 @@ declare global {
       }
       interface OPEN_SHOP extends ig.EventStepBase {
         shop: string;
+        start(this: this): void
       }
       interface OPEN_SHOP_CONSTRUCTOR extends ImpactClass<OPEN_SHOP> {
         new (settings: OPEN_SHOP.Settings): OPEN_SHOP;

@@ -12,7 +12,7 @@ declare global {
 
     namespace Vars {
       interface Accessor {
-        onVarAccess(this: this, varString: string, varParts: string[]): VarValue;
+        onVarAccess(this: this, path: string, keys: string[]): VarValue | void;
       }
     }
 
@@ -21,27 +21,29 @@ declare global {
       storage: any;
 
       get<K extends keyof ig.KnownVars>(this: this, path: K): ig.KnownVars[K];
-      get<T extends ig.VarValue = ig.VarValue>(this: this, path: string): T;
+      get<T = ig.VarValue>(this: this, path: string): T;
       setDefault<K extends keyof ig.KnownVars>(this: this, path: K, value: ig.KnownVars[K]): void;
-      setDefault(this: this, path: string, value: ig.VarValue): void;
+      setDefault<T = ig.VarValue>(this: this, path: string, value: T): void;
       set<K extends keyof ig.KnownVars>(this: this, path: K, value: ig.KnownVars[K]): void;
-      set(this: this, path: string, value: ig.VarValue): void;
+      set<T = ig.VarValue>(this: this, path: string, value: T): void;
       add<K extends keyof ig.KnownVars>(this: this, path: K, value: ig.KnownVars[K]): void;
-      add(this: this, path: string, value: ig.VarValue): void;
+      add<T = ig.VarValue>(this: this, path: string, value: T): void;
       sub<K extends keyof ig.KnownVars>(this: this, path: K, value: ig.KnownVars[K]): void;
-      sub(this: this, path: string, value: ig.VarValue): void;
+      sub<T = ig.VarValue>(this: this, path: string, value: T): void;
       mul<K extends keyof ig.KnownVars>(this: this, path: K, value: ig.KnownVars[K]): void;
-      mul(this: this, path: string, value: ig.VarValue): void;
+      mul<T = ig.VarValue>(this: this, path: string, value: T): void;
       div<K extends keyof ig.KnownVars>(this: this, path: K, value: ig.KnownVars[K]): void;
-      div(this: this, path: string, value: ig.VarValue): void;
+      div<T = ig.VarValue>(this: this, path: string, value: T): void;
       mod<K extends keyof ig.KnownVars>(this: this, path: K, value: ig.KnownVars[K]): void;
-      mod(this: this, path: string, value: ig.VarValue): void;
+      mod<T = ig.VarValue>(this: this, path: string, value: T): void;
       and<K extends keyof ig.KnownVars>(this: this, path: K, value: ig.KnownVars[K]): void;
-      and(this: this, path: string, value: ig.VarValue): void;
+      and<T = ig.VarValue>(this: this, path: string, value: T): void;
       or<K extends keyof ig.KnownVars>(this: this, path: K, value: ig.KnownVars[K]): void;
-      or(this: this, path: string, value: ig.VarValue): void;
+      or<T = ig.VarValue>(this: this, path: string, value: T): void;
       xor<K extends keyof ig.KnownVars>(this: this, path: K, value: ig.KnownVars[K]): void;
-      xor(this: this, path: string, value: ig.VarValue): void;
+      xor<T = ig.VarValue>(this: this, path: string, value: T): void;
+      
+      registerVarAccessor(this: this, domain: string, accessor: ig.Vars.Accessor, editor?: string): void;
     }
     interface VarsConstructor extends ImpactClass<Vars> {
       new (): Vars;
@@ -53,7 +55,7 @@ declare global {
       code: string;
       pretty: string;
       vars: string[];
-      condition: () => unknown;
+      condition: () => boolean;
 
       setCondition(this: this, condition: string): void;
       evaluate(this: this): boolean;

@@ -22,6 +22,9 @@ declare global {
         name: ig.LangLabel.Data;
         tiles: number[][];
         maps: Map[];
+        connections: Connection[];
+        icons: Icon[];
+        landmarks: Landmark[];
       }
 
       interface Map {
@@ -30,11 +33,37 @@ declare global {
         offset: Vec2;
         dungeon: '' | 'DUNGEON' | 'NO_DUNGEON';
       }
+
+      interface Connection {
+        tx: number;
+        ty: number;
+        dir: "VERTICAL" | "HORIZONTAL";
+        size: number;
+        map1: number;
+        map2: number;
+      }
+
+      interface Icon {
+        icon: string;
+        x: number;
+        y: number;
+        map: number;
+      }
+
+      interface Landmark {
+        id: string;
+        x: number;
+        y: number;
+        map: number;
+        option: keyof sc.LANDMARK_OPTIONS;
+      }
     }
     interface AreaLoadable extends ig.Loadable {
       data: sc.AreaLoadable.Data;
+      
+      onload(this: this, data: sc.AreaLoadable.Data): void;
     }
-    interface AreaLoadableConstructor extends ImpactClass<AreaLoadable> {
+    interface AreaLoadableConstructor extends ImpactClass<AreaLoadable>, ig.Cacheable.ImplementsCache<AreaLoadable> {
       new (path: string): AreaLoadable;
     }
     var AreaLoadable: AreaLoadableConstructor;

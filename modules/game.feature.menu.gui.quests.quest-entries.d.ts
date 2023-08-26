@@ -20,7 +20,7 @@ declare global {
 
     interface TaskEntry extends ig.GuiElementBase {
       taskIndex: number | undefined;
-      quest: sc.Quest | undefined | null;
+      quest: Optional<sc.Quest>;
       taskText: sc.TextGui;
       taskDoneIcon: sc.TextGui;
       _subtasks: sc.SubTaskEntryBase[];
@@ -28,12 +28,12 @@ declare global {
       setTask(
         this: this,
         taskIndex?: number,
-        quest?: sc.Quest | null,
-        hide?: boolean | null,
-        large?: boolean | null,
-        minimize?: boolean | null,
+        quest?: Optional<sc.Quest>,
+        hide?: Optional<boolean>,
+        large?: Optional<boolean>,
+        minimize?: Optional<boolean>,
       ): void;
-      show(this: this, delay?: boolean | null, initDelay?: number | null): void;
+      show(this: this, delay?: Optional<boolean>, initDelay?: Optional<number>): void;
       _addSubTaskTask(this: this, subtask: sc.SubTaskEntryBase): void;
     }
     interface TaskEntryConstructor extends ImpactClass<TaskEntry> {}

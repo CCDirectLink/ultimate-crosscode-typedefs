@@ -8,7 +8,7 @@ Hi! This document serves as the documentation for the _Ultimate CrossCode TypeDe
 
 **NOTE:** despite my personal preference for [Yarn](https://yarnpkg.com/) over [npm](https://www.npmjs.com/) I included npm commands here because virtually everyone in CC modding seems to be using it, I hope you can figure out Yarn commands yourself if you use it, the syntax should be more or less equivalent.
 
-**NOTE 2:** this tutorial will be updated when work on CCLoader v3 begins.
+**NOTE 2:** this tutorial will be updated when CCLoader3 has released.
 
 Let's get started by creating the mod manifest:
 
@@ -23,7 +23,7 @@ Let's get started by creating the mod manifest:
   "ccmodDependencies": {},
   "devDependencies": {
     "typescript": "^4.6.2",
-    "ultimate-crosscode-typedefs": "dmitmel/ultimate-crosscode-typedefs"
+    "ultimate-crosscode-typedefs": "CCDirectLink/ultimate-crosscode-typedefs"
   },
   "scripts": {
     "build": "tsc --build",
@@ -43,7 +43,7 @@ This is the most basic package manifest that is just enough to get our example m
 
 **TIP:** A good example of `package.json` in an existing TS mod can be found [here](https://github.com/dmitmel/crosscode-readable-saves/blob/master/package.json).
 
-There is one very important note though: **_you will need_ a local copy of ultimate-crosscode-typedefs because typings are very far from complete** (as I mentioned [above](#history-and-background)) and most likely you'll be editing them often to accommodate the needs of your project. So, let's set up a local copy with the [`npm link`](https://docs.npmjs.com/cli/link.html) command as well before continuing:
+There is one very important note though: **_you might need_ a local copy of ultimate-crosscode-typedefs because typings are very far from complete** (as I mentioned [above](#history-and-background)) and most likely you'll be editing them often to accommodate the needs of your project. So, let's set up a local copy with the [`npm link`](https://docs.npmjs.com/cli/link.html) command as well before continuing:
 
 ```bash
 # Firstly, fork this repository, I would be very grateful if you send your
@@ -54,6 +54,7 @@ There is one very important note though: **_you will need_ a local copy of ultim
 cd path/to/CrossCode
 
 git clone git@github.com:USERNAME/ultimate-crosscode-typedefs.git
+cd ultimate-crosscode-typedefs
 npm link
 
 # again, the following path depends on your preference
@@ -225,7 +226,7 @@ Let's go over a few things:
 - All classes should either inherit other Impact classes or `ig.Class` in the declarations since normally it is impossible to create another class without having `ig.Class` at the end of the inheritance chain (because some class has to call `ig.Class.extend`). \
   **TIP:** I generated [an inheritance tree of all classes used in CrossCode](https://gist.github.com/dmitmel/124612112e6f73ead9c3360c1dbc136d) which might come in handy for searching parent classes.
 - `ImpactClass` is a helper interface which automatically generates the `prototype`, defines [`inject`](https://impactjs.com/documentation/class-reference/class#inject) and [`extend`](https://impactjs.com/documentation/class-reference/class#extend).
-- All methods **must** define `this` parameter explicitly, otherwise the `ImpactClassDefinition` type used by `ImpactClass` for the class definition objects in `inject`/`extend` won't generate correct `this` parameters which contains `this.parent` for example. Fortunately, TypeScript has the contextual type alias `this` which refers to the current interface or class, so defining `this` is as easy as writing `this: this` at the beginning of the argument lists.
+- All methods **must** define `this` parameter explicitly, otherwise the `ImpactClassDefinition` type used by `ImpactClass` for the class definition objects in `inject`/`extend` won't generate correct `this` parameters which contains `this.parent` for example. Fortunately, TypeScript has the contextual type alias `this` which refers to the current interface or class, so defining `this` is as easy as writing `this: this` at the beginning of the argument list.
 - `this.parent` in the class definitions contains actual method signatures and not some stub like `(...args: unknown[]) => unknown`, so you get typechecking there as well.
 - Constructors which are defined in the constructor interfaces aren't inherited from parent classes.
 - `ImpactClass` automatically picks up the constructor and generates an `init` function for it in the class definitions and the prototype.
@@ -350,7 +351,7 @@ Sadly, due to the sheer complexity of the correct `ImpactClass` implementation i
 
 ### Injecting generic functions in Impact classes
 
-For some reason compiler can't infer types of generics from the signature declared in the type definition and apply it to the injected function. An example workaround of this problem can be seen [here](https://github.com/dmitmel/crosscode-ru/blob/c666c00ba9416e03d9e39550f5181cdce42e6721/enhanced-ui/src/storage-area-and-map-names.ts#L97-L112).
+For some reason the compiler can't infer types of generics from the signature declared in the type definition and apply it to the injected function. An example workaround of this problem can be seen [here](https://github.com/dmitmel/crosscode-ru/blob/c666c00ba9416e03d9e39550f5181cdce42e6721/enhanced-ui/src/storage-area-and-map-names.ts#L97-L112).
 
 ## Asking for help or reporting bugs
 

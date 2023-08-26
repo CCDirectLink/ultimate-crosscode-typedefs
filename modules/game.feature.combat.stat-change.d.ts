@@ -9,20 +9,40 @@ declare global {
 
     namespace StatChange {
       type StatName = keyof typeof sc.STAT_CHANGE_SETTINGS;
+      interface Params {
+        hp: number;
+        attack: number;
+        defense: number;
+        focus: number;
+        elemFactor: number[]
+      }
     }
-    interface StatChange extends ig.Class {}
+    interface StatChange extends ig.Class {
+      params: StatChange.Params;
+      modifiers: sc.ModifierList;
+      iconString: string;
+      hasTimer: boolean;
+
+      clear(this: this): void;
+      getTimeFactor(this: this): number;
+      
+      //does not exist on base class, but it is expected to exist in all uses of StatChange.
+      update(this: this): boolean;
+    }
     interface StatChangeConstructor extends ImpactClass<StatChange> {
       new (stats: sc.StatChange.StatName[]): StatChange;
     }
     var StatChange: StatChangeConstructor;
 
-    interface ActionBuff extends sc.StatChange {
+    interface ActionBuff extends sc.StatChange, ig.Entity.Attachable, sc.Combat.ActionAttached {
       active: boolean;
       name: string;
       hacked: boolean;
+
+      reset(this: this, time: number): void;
     }
     interface ActionBuffConstructor extends ImpactClass<ActionBuff> {
-      new (stats: sc.StatChange.StatName[], name: string, hacked?: boolean | null): ActionBuff;
+      new (stats: sc.StatChange.StatName[], name: string, hacked?: Optional<boolean>): ActionBuff;
     }
     var ActionBuff: ActionBuffConstructor;
 
@@ -40,10 +60,10 @@ declare global {
 
     interface StatChangeSettings {
       change: sc.STAT_CHANGE_TYPE;
-      type: keyof typeof sc.STAT_PARAM_TYPE;
+      type: sc.StatParamType;
       value: number;
       icon: string;
-      grade: string;
+      grade?: string;
     }
     var STAT_CHANGE_SETTINGS: Record<string, StatChangeSettings>;
   }

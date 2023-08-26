@@ -19,11 +19,11 @@ declare global {
 
       doSizeTransition(
         this: this,
-        width: number | null | undefined,
-        height: number | null | undefined,
+        width: Optional<number>,
+        height: Optional<number>,
         time: number,
         timeFunction: KeySpline,
-        delay: number | null | undefined,
+        delay: Optional<number>,
       ): void;
       getLevelColor(enemyLevel: number): sc.GUI_NUMBER_COLOR;
     }

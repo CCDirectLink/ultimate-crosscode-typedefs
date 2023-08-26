@@ -163,33 +163,111 @@ declare global {
       type HotkeyCallback = () => sc.ButtonGui;
     }
     interface MenuModel extends ig.GameAddon, sc.Model {
+      previousMenu: sc.MENU_SUBMENU;
+      buttonInteract: ig.ButtonInteractEntry;
       backCallbackStack: sc.MenuModel.BackCallback[];
       hotkeysCallbacks: sc.MenuModel.HotkeyCallback;
       currentBackCallback: sc.MenuModel.BackCallback;
-      buttonInteract: ig.ButtonInteractEntry;
-      shopID: string | null | undefined;
+      shopID: Optional<string>;
       shopPage: number;
       shopCart: sc.MenuModel.ShopCartEntry[];
       shopSellMode: boolean;
       statusElement: sc.ELEMENT;
       statusDiff: boolean;
 
+      addHotkey(this: this, callback: sc.MenuModel.HotkeyCallback, commit?: Optional<boolean>): void;
+      commitHotkeys(this: this, a?: boolean): void;
+      updateHotkeys(this: this): void;
+      removeHotkeys(this: this): void;
       pushBackCallback(this: this, callback: sc.MenuModel.BackCallback): void;
       popBackCallback(this: this): void;
-      addHotkey(this: this, callback: sc.MenuModel.HotkeyCallback, commit?: boolean | null): void;
+      pushMenu(this: this, menu: sc.MENU_SUBMENU): void;
       popMenu(this: this): void;
-      setDirectMode(direct?: boolean | null, menu?: sc.MENU_SUBMENU | null): void;
+      setDirectMode(direct?: Optional<boolean>, menu?: Optional<sc.MENU_SUBMENU>): void;
       exitMenu(this: this): void;
-      moveLeaSprite(this: this, x: number, y: number, state: sc.MENU_LEA_STATE): void;
+      moveLeaSprite(this: this, x: number, y: number, state: sc.MENU_LEA_STATE, skip?: boolean): void;
+      setInfoText(this: this, text: sc.TextLike, fade?: boolean): void;
+      setBuffText(this: this, text: sc.TextLike, fade?: boolean, id?: sc.ItemID): void;
+      setShopPage(this: this, page: number): void;
       updateCart(this: this, itemID: sc.ItemID, amount: number, price: number): void;
       getTotalCost(this: this): number;
       getItemQuantity(this: this, itemID: sc.ItemID, price: number): number;
+      sortList(this: this, button: ig.FocusGui): void;
     }
     interface MenuModelConstructor extends ImpactClass<MenuModel> {
       new (): MenuModel;
     }
     var MenuModel: MenuModelConstructor;
     var menu: sc.MenuModel;
+
+    enum MENU_EVENT {
+      INFO_TEXT_CHANGED = 0,
+      TOP_BAR_CHANGED = 1,
+      TOP_BAR_UPDATE = 2,
+      ENTER_MENU = 3,
+      LEAVE_MENU = 4,
+      EXIT_MENU = 5,
+      LEA_STATE_CHANGED = 6,
+      ITEM_INFO_CHANGED = 7,
+      SELECTED_BODYPART = 8,
+      EQUIP_CHANGED = 9,
+      SKILL_TREE_SELECT = 10,
+      SKILL_CURSOR_FOCUS_NODE = 11,
+      SKILL_CURSOR_UNFOCUS_NODE = 12,
+      SKILL_NODE_SELECT = 13,
+      SKILL_NODE_EXIT = 14,
+      SKILL_ENTER_SWAP_BRANCHES = 15,
+      SKILL_LEAVE_SWAP_BRANCHES = 16,
+      SKILL_TOGGLED_INPUT_MODE = 17,
+      SKILL_ENSURE_GAMEPAD_FOCUS = 18,
+      ITEM_CHANGED_TAB = 19,
+      MAP_CHANGED_FLOOR = 20,
+      OPTION_CHANGED_TAB = 21,
+      SORT_LIST = 22,
+      ITEM_RESET_INFO = 23,
+      SET_BUFF_INFO = 24,
+      QUEST_CHANGED_TAB = 25,
+      QUEST_SET_INFO = 26,
+      QUEST_ENTER_DEAILS = 27,
+      QUEST_LEAVE_DEAILS = 28,
+      MAP_WORLDMAP_STATE = 29,
+      MAP_FOCUS_AREA = 30,
+      MAP_FOCUS_MAP = 31,
+      MAP_UNFOCUS = 32,
+      MAP_ENSURE_FOCUS = 33,
+      MAP_AREA_LOAD = 34,
+      MAP_AREA_LOAD_DONE = 35,
+      SAVE_NEW_SLOT = 36,
+      SAVE_UPDATE_SLOT = 37,
+      SAVE_DELETE_SLOT = 38,
+      SYNO_CHANGED_TAB = 39,
+      SYNOP_SET_INFO = 40,
+      SYNOP_SWITCH_PAGE = 41,
+      SYNOP_BUTTON_PRESS = 42,
+      SKILL_SWAP_FOCUS = 43,
+      SKILL_SWAP_UNFOCUS = 44,
+      SKILL_SWAP_ENSURE = 45,
+      SHOP_STATE_CHANGED = 46,
+      SHOP_PAGE_CHANGED = 47,
+      SHOP_CART_CHANGED = 48,
+      SHOP_OPEN_QUANTITY = 49,
+      SHOP_OPEN_CHECKOUT = 50,
+      TRADE_TOGGLE_DETAILS = 51,
+      STATUS_SET_PAGE = 52,
+      STATUS_SET_ELEMENT = 53,
+      DROP_COMPLETED = 54,
+      REMOVE_HOTKEYS = 55,
+      EQUIP_ENSURE_CURRENT_VALUES = 56,
+      MAP_OPEN_STAMPS = 57,
+      MAP_UPDATE_STAMP = 58,
+      SYNOP_FOCUS = 59,
+      OPTION_LANG_POP_UP = 60,
+      SKILL_SHOW_EFFECT = 61,
+      CIRCUIT_FOCUS_CAM = 62,
+      SKILL_SHOW_EFFECT_SWAP = 63,
+      POST_EXIT = 99,
+      FULL_MENU_ENTER = 100,
+    }
 
     namespace MenuHelper {
       function drawLevel(

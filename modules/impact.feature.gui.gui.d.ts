@@ -43,7 +43,10 @@ declare global {
       undoTransform(this: this): void;
     }
 
-    namespace GUI {}
+    namespace GUI {
+    }
+    interface GUI {}
+    var GUI: GUI;
 
     enum GUI_ALIGN {
       Y_TOP,
@@ -92,8 +95,10 @@ declare global {
     interface GuiHook extends ig.Class {
       pos: Vec2;
       size: Vec2;
+      pivot: Vec2;
+      scroll: Vec2;
       align: { x: ig.GUI_ALIGN; y: ig.GUI_ALIGN };
-      parentHook: ig.GuiHook | null | undefined;
+      parentHook: Optional<ig.GuiHook>;
       children: ig.GuiHook[];
       screenCoords?: ig.GuiHook.ScreenCoords;
       localAlpha: number;
@@ -154,16 +159,56 @@ declare global {
     interface GuiTransformConstructor extends ImpactClass<GuiTransform> {}
     var GuiTransform: GuiTransformConstructor;
 
+    namespace GuiElementBase {
+      namespace Annotation {
+        interface Content {
+          title: string;
+          description: string;
+        }
+
+        interface Offset {
+          x: number;
+          y: number;
+        }
+
+        interface Size {
+          x: number | "dyn";
+          y: number | "dyn";
+          offX?: number;
+          offY?: number;
+        }
+
+        interface Index {
+          x: number;
+          y: number;
+        }
+      }
+      interface Annotation {
+        content: Annotation.Content;
+        offset?: Annotation.Offset;
+        size?: Annotation.Size;
+        index?: Annotation.Index;
+        type?: keyof sc.HELP_ANNO_TYPE;
+      }
+    }
+
     interface GuiElementBase extends ig.Class {
       transitions: { [name: string]: ig.GuiHook.Transition };
       hook: ig.GuiHook;
+      annotation?: GuiElementBase.Annotation;
 
       setPos(this: this, x: number, y: number): void;
+      getDestPos(this: this): Vec2;
+      setScroll(this: this, x: number, y: number): void;
+      getDestScroll(this: this): Vec2;
       setSize(this: this, w: number, h: number): void;
       setPivot(this: this, x: number, y: number): void;
       setAlign(this: this, x: ig.GUI_ALIGN, y: ig.GUI_ALIGN): void;
       isVisible(this: this): boolean;
+      getChildGuiIndex(this: this, gui: ig.GuiElementBase): number;
+      getChildGuiByIndex(this: this, index: number): ig.GuiElementBase;
       addChildGui(this: this, guiElement: ig.GuiElementBase): void;
+      insertChildGui(this: this, guiElement: ig.GuiElementBase, index: number): void;
       removeChildGui(this: this, guiElement: ig.GuiElementBase): void;
       removeChildGuiByIndex(this: this, index: number): ig.GuiElementBase;
       removeAllChildren(this: this): void;

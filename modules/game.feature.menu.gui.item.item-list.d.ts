@@ -28,11 +28,11 @@ declare global {
       }
       interface TabButtonConstructor extends ImpactClass<TabButton> {
         new (
-          text?: sc.TextLike | null,
-          icon?: string | null,
-          largeWidth?: number | null,
-          smallWidth?: number | null,
-          noIcon?: boolean | null,
+          text?: Optional<sc.TextLike>,
+          icon?: Optional<string>,
+          largeWidth?: Optional<number>,
+          smallWidth?: Optional<number>,
+          noIcon?: Optional<boolean>,
         ): TabButton;
       }
     }
@@ -46,7 +46,7 @@ declare global {
         icon: string,
         x: number,
         type: sc.ITEMS_TYPES,
-        subType?: sc.ITEMS_EQUIP_TYPES | null,
+        subType?: Optional<sc.ITEMS_EQUIP_TYPES>,
       ): sc.ItemTabbedBox.TabButton;
     }
     interface ItemTabbedBoxConstructor extends ImpactClass<ItemTabbedBox> {

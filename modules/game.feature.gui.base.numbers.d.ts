@@ -35,19 +35,19 @@ declare global {
 
     namespace NumberGui {
       interface Settings {
-        size?: sc.NumberSize | null;
-        color?: sc.GUI_NUMBER_COLOR | null;
-        signed?: boolean | null;
-        transitionTime?: number | null;
-        transitionScale?: number | null;
-        zeroAsGrey?: boolean | null;
+        size?: Optional<sc.NumberSize>;
+        color?: Optional<sc.GUI_NUMBER_COLOR>;
+        signed?: Optional<boolean>;
+        transitionTime?: Optional<number>;
+        transitionScale?: Optional<number>;
+        zeroAsGrey?: Optional<boolean>;
       }
     }
     interface NumberGui extends ig.GuiElementBase {
       showPlus: boolean;
       maxNumber: number;
 
-      setNumber(this: this, number: number, skipTransition?: boolean | null): void;
+      setNumber(this: this, number: number, skipTransition?: Optional<boolean>): void;
       setMaxNumber(this: this, number: number): void;
       setColor(this: this, color: sc.GUI_NUMBER_COLOR): void;
     }

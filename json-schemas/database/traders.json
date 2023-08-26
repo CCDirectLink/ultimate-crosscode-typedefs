@@ -1,0 +1,48 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "JSON schema for CrossCode traders",
+
+    "$ref": "#/definitions/Database.TraderRoot",
+
+    "definitions": {
+        "Database.TraderRoot": {
+            "type": "object",
+            "additionalProperties": { "$ref": "#/definitions/Database.TraderEntry" } 
+        },
+
+        "Database.TraderEntry": {
+            "type": "object",
+            "required": [ "name", "area", "options" ],
+            "properties": {
+                "name": { "type": "object" },
+                "options": { "type": "array", "items": { "$ref": "#/definitions/Database.TradeOption" }},
+                "area": { "type": "string" },
+                "order": { "type": "number" },
+                "noTrack": { "type": "boolean" },
+                "upgradeTo": { "type": "string" }
+            }
+        },
+
+        "Database.TradeOption": {
+            "type": "object",
+            "required": [ "get", "require" ],
+            "properties": {
+                "get": { "type": "array", "items": { "$ref": "#/definitions/Database.TradeItem" } },
+                "require": { "type": "array", "items": { "$ref": "#/definitions/Database.TradeItem" } },
+                "cost": { "type": "number" }
+            }
+        },
+
+        "Database.TradeItem": {
+            "type": "object",
+            "required": ["id", "amount"],
+            "properties": {
+                "id": { "type": ["string", "number"] },
+                "amount": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        }
+    }
+}

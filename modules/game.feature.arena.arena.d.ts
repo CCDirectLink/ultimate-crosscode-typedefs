@@ -120,11 +120,39 @@ declare global {
         condition: string;
         type: sc.ARENA_BASE_TYPE;
       }
+
+      interface Runtime {
+        score: number;
+        prevScore: number;
+        timer: number;
+        chain: number;
+        rushChain: number;
+        rushChainMax: number;
+        chainTimer: number;
+        roundKills: number;
+        currentWave: number;
+        waveKillsNeeded: number;
+        rush: boolean;
+        roundStarted: boolean;
+        currentRound: number;
+      }
     }
 
-    interface Arena extends ig.GameAddon, ig.Vars.Accessor {
+    interface Arena extends ig.GameAddon, ig.Vars.Accessor, sc.Model.Observer {
       active: boolean;
+      runtime: sc.Arena.Runtime
+      coins: number;
+      coinsSpend: number;
       cups: Record<string, sc.Arena.Cup>;
+      partyStash: string[];
+      effects: ig.EffectSheet;
+      _pauseBlock: boolean;
+      _endRoundEnd: boolean;
+      _exitCup: boolean;
+      _pauseAction: number;
+      _isFinalHit: boolean;
+      _partySettingBehaviour: null | keyof sc.PARTY_STRATEGY.BehaviourStrategies;
+      _hasCustomCups: boolean;
 
       registerCup(
         this: this,
@@ -134,18 +162,17 @@ declare global {
       ): void;
       onPreDamageApply(
         this: this,
-        // TODO
-        a: sc.BasicCombatant,
-        b: sc.CombatParams.DamageResult,
-        c: sc.SHIELD_RESULT,
-        d: sc.CombatParams,
-        e: sc.AttackInfo,
+        combatant: ig.ENTITY.Combatant,
+        damageResult: sc.CombatParams.DamageResult,
+        shieldResult: sc.SHIELD_RESULT,
+        attacker: ig.ENTITY.Combatant,
+        attackInfo: sc.AttackInfo,
       ): void;
-      addScore(this: this, scoreType: keyof sc.ARENA_SCORE_TYPES, points: number): void;
+      addScore(this: this, scoreType: keyof sc.ARENA_SCORE_TYPES, points?: number): void;
       getTotalArenaCompletion(this: this): number;
       getCupCompletion(this: this, cupName: string): number;
       getTotalDefaultTrophies(this: this, a: number, c: boolean): number;
-      getCupTrophy(this: this, cupName: string): number;
+      getCupTrophy(this: this, cupName: string): sc.ARENA_MEDALS_TROPHIES | -1;
       isCupUnlocked(this: this, cupName: string): boolean;
       getTotalDefaultCups(this: this, sorted: boolean): { [key: string]: { order: number } };
       isCupCustom(this: this, cupName: string): boolean;
@@ -161,6 +188,8 @@ declare global {
         cupName: string,
         attribute: K,
       ): Arena.KnownCupAttributes[K];
+      onEnemyBreak(this: this, enemy: ig.ENTITY.Enemy): void;
+      hasChallenge(this: this, challenge: keyof sc.ARENA_CHALLENGES): boolean;
     }
     interface ArenaConstructor extends ImpactClass<Arena> {
       new (): Arena;

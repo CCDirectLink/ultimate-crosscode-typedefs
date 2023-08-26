@@ -24,9 +24,9 @@ declare global {
         imageSrc: string,
         width: number,
         height: number,
-        offX?: number | null,
-        offY?: number | null,
-        xCount?: number | null,
+        offX?: Optional<number>,
+        offY?: Optional<number>,
+        xCount?: Optional<number>,
       ): TileSheet;
     }
     var TileSheet: TileSheetConstructor;
@@ -55,7 +55,18 @@ declare global {
     interface AnimationSheet extends ig.JsonLoadable {
       anims: Array<ig.MultiDirAnimationSet | ig.SingleDirAnimationSet>;
     }
-    interface AnimationSheetConstructor extends ImpactClass<AnimationSheet> {}
+    interface AnimationSheetConstructor extends ImpactClass<AnimationSheet> {
+      new (pathOrData: string | unknown): ig.AnimationSheet;
+    }
     var AnimationSheet: AnimationSheetConstructor;
+    
+    enum ANIM_SHAPE_TYPE {
+      NO_EXPAND = 1,
+      Y_EXPAND = 2,
+      Z_EXPAND = 3,
+      YZ_EXPAND = 4,
+      Y_FLAT = 5,
+      Z_FLAT = 6
+  }
   }
 }

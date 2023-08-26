@@ -6,6 +6,8 @@ export {};
 declare global {
   namespace sc {
     interface StatsModel extends ig.GameAddon {
+      statsEnabled: boolean;
+
       set(this: this, stat: string, value: number): void;
       setMax(this: this, stat: string, value: number): void;
       setMin(this: this, stat: string, value: number): void;

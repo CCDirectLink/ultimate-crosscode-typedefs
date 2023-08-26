@@ -53,13 +53,17 @@ declare global {
         icon: string; // TODO
         order: number;
         level: number;
-        effect: { sheet: string; name?: string | null }; // TODO
+        effect: ig.EffectHandle.Settings;
         rarity: sc.ITEMS_RARITY;
         cost: number;
         noTrack: boolean;
         sources: sc.Inventory.ItemSource[];
-        equipType?: sc.ITEMS_EQUIP_TYPES | null;
-        isScalable?: boolean | null;
+        equipType?: Optional<sc.ITEMS_EQUIP_TYPES>;
+        isScalable?: Optional<boolean>;
+        stats?: Optional<string[]>;
+        time?: Optional<number>;
+        isBuff?: boolean;
+        foodSprite?: string;
         // TODO
       }
 
@@ -74,7 +78,7 @@ declare global {
             value: {
               text: ig.LangLabel.Data;
               icon: ItemSource['type'];
-              subText?: ig.LangLabel.Data | null;
+              subText?: Optional<ig.LangLabel.Data>;
               arrow: boolean;
             };
           };
@@ -84,8 +88,10 @@ declare global {
       scalable: number[];
 
       updateScaledEquipment(this: this, newLevel: number): void;
-      getItem(id: sc.ItemID): sc.Inventory.Item | null | undefined;
+      getItem(id: sc.ItemID): Optional<sc.Inventory.Item>;
       getItemName(this: this, id: sc.ItemID): string;
+      getBuffString(this: this, id: sc.ItemID, a?: boolean, statChangeSettings?: string[]): string | undefined;
+      isBuffID(this: this, id: sc.ItemID): boolean
       getRaritySuffix(this: this, rarity: sc.ITEMS_RARITY): string;
       getItemNameWithIcon(this: this, id: sc.ItemID): string;
       getItemIcon(this: this, id: sc.ItemID): string;

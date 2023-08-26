@@ -10,6 +10,23 @@ export {};
 
 declare global {
   namespace sc {
+    namespace LandmarkOption {
+      interface Bounds {
+        x: number;
+        y: number;
+        w: number;
+        h: number;
+      }
+    }
+    interface LandmarkOption {
+      icon: unknown;
+      bounds: LandmarkOption.Bounds;
+    }
+    interface LANDMARK_OPTIONS {
+      DEFAULT: LandmarkOption;
+    }
+    let LANDMARK_OPTIONS: LANDMARK_OPTIONS;
+
     namespace MapModel {
       namespace Area {
         interface Landmark {
@@ -17,6 +34,7 @@ declare global {
           description: ig.LangLabel.Data;
         }
       }
+
       interface Area {
         name: ig.LangLabel.Data;
         path: string;
@@ -32,27 +50,54 @@ declare global {
 
       interface Map {
         name: string;
+        levels: { height: number }[];
         mapHeight: number;
         mapWidth: number;
         masterLevel: number;
-        layer: MapLayer[];
+        attributes: MapModel.MapAttributes
+        screen: Vec2
+        entities: MapModel.MapEntity[],
+        layer: MapModel.MapLayer[];
       }
+      
+      interface MapEntity {
+        type: string,
+        x: number,
+        y: number,
+        level: number,
+        settings: ig.Entity.Settings
+      }
+
+      interface MapAttributes {
+        saveMode: 'ENABLED' | 'DISABLED' | ''
+        bgm: string
+        cameraInBounds: boolean
+        'map-sounds': string
+        mapStyle: string
+        weather: string
+        area: string
+        npcRunners: string
+      }
+
+      type MapLayerType = 'Background' | 'Collision' | 'Navigation' | 'Light' | 'object1' | 'object2' | 'object3';
+      type MapLayerLevelType = 'last' | 'light' | 'object1' | 'object2' | 'object3' | number;
 
       interface MapLayer {
         id: number;
-        type: string;
+        type: MapModel.MapLayerType;
         name: string;
-        level: string;
+        level: MapModel.MapLayerLevelType;
         width: number;
         height: number;
-        distance: number;
-        repeat: boolean;
-        moveSpeed: Vec2;
-        tilesetName: string;
-        tilesize: number;
         visible: number;
+        tilesetName: string;
+        repeat: boolean;
+        distance: number;
         yDistance: number;
+        tilesize: number;
+        moveSpeed: Vec2;
         data: number[][];
+        lighter: boolean;
       }
     }
     interface MapModel extends ig.GameAddon, sc.Model {

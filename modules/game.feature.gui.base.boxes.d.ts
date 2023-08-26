@@ -18,5 +18,28 @@ declare global {
       new (content: ig.GuiElementBase): CenterBoxGui;
     }
     var CenterBoxGui: CenterBoxGuiConstructor;
+
+    interface LineGui extends ig.BoxGui {
+      ninepatch: ig.NinePatch;
+    }
+    interface LineGuiConstructor extends ImpactClass<LineGui> {
+      new (width: number): sc.LineGui
+    }
+    var LineGui: LineGuiConstructor;
+
+    interface SideBoxGui extends ig.GuiElementBase {
+      remove(this: this): void;
+    }
+    interface SideBoxGuiConstructor extends ImpactClass<SideBoxGui> {}
+    var SideBoxGui: SideBoxGuiConstructor;
+
+    type SmallBoxAlign = (dest: Vec2, coll: ig.CollEntry) => void;
+    let SMALL_BOX_ALIGN: Record<string, SmallBoxAlign>;
+
+    interface SmallEntityBox extends ig.GuiElementBase {}
+    interface SmallEntityBoxConstructor extends ImpactClass<SmallEntityBox> {
+      new (entity: ig.Entity, text: string, time: number, align?: SmallBoxAlign, offY?: number): SmallEntityBox;
+    }
+    let  SmallEntityBox: SmallEntityBoxConstructor;
   }
 }

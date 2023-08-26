@@ -10,7 +10,7 @@ declare global {
         z: number,
         entity: sc.BasicCombatant,
         dir: Vec2,
-      ): void;
+      ): sc.CombatProxyEntity | ig.ENTITY.Ball | void;
     }
     interface ProxySpawnerBaseConstructor extends ImpactClass<ProxySpawnerBase> {}
     var ProxySpawnerBase: ProxySpawnerBaseConstructor;

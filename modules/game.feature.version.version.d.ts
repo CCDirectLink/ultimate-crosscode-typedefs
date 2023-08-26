@@ -32,7 +32,7 @@ declare global {
       minor: number;
       patch: number;
       hotfix: number;
-      special: string | null | undefined;
+      special: Optional<string>;
       saveVersion: number;
       oldMajor: number;
       oldMinor: number;

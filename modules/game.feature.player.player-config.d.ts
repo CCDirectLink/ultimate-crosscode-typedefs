@@ -43,11 +43,42 @@ declare global {
     }
     var PLAYER_SP_COST: number[];
 
+    namespace PlayerConfig {
+      interface Stat {
+        base: number;
+        increase: number;
+        variance: number;
+      }
+      interface Stats {
+        hp: Stat;
+        attack: Stat;
+        defense: Stat;
+        focus: Stat;
+      }
+
+      interface AutoEquipEntry {
+        level: number;
+        HEAD: number;
+        LEFT_ARM: number;
+        RIGHT_ARM: number;
+        TORSO: number;
+        FEET: number;
+        condition?: ig.VarCondition;
+      }
+      type AutoEquip = AutoEquipEntry[];
+    }
     interface PlayerConfig extends ig.JsonLoadable {
       name: string;
+      stats: PlayerConfig.Stats;
+      autoequip: PlayerConfig.AutoEquip;
+      baseConfig: sc.PlayerSubConfig;
       elementConfigs: Record<sc.ELEMENT, sc.PlayerSubConfig>;
     }
-    interface PlayerConfigConstructor extends ImpactClass<PlayerConfig> {}
+    interface PlayerConfigConstructor extends ImpactClass<PlayerConfig> {
+      new (name: string): sc.PlayerConfig;
+
+      getElementBall(combatant: sc.PlayerBaseEntity, element: sc.ELEMENT, charged: boolean): sc.ProxySpawnerBase
+    }
     var PlayerConfig: PlayerConfigConstructor;
 
     enum ACTION_DMG_TYPE {
@@ -67,15 +98,33 @@ declare global {
       key: string;
       name?: ig.LangLabel;
       description?: ig.LangLabel;
-      dmgType?: sc.ACTION_DMG_TYPE | null;
+      dmgType?: Optional<sc.ACTION_DMG_TYPE>;
       stunType?: sc.ACTION_STUN_TYPE | false;
       icon?: ig.Image;
     }
     interface PlayerActionConstructor extends ImpactClass<PlayerAction> {}
     var PlayerAction: PlayerActionConstructor;
 
+    namespace PlayerSubConfig {
+      interface Factor {
+        hp: number;
+        attack: number;
+        defense: number;
+        focus: number;
+        elemFactor: number[];
+      }
+    }
+
     interface PlayerSubConfig extends ig.Class {
+      paramFactors?: PlayerSubConfig.Factor;
+      skillFactors: PlayerSubConfig.Factor;
       actions: Record<string, sc.PlayerAction>;
+      baseParams: sc.CombatParams.BaseParams;
+      modifiers: sc.ModifierList;
+      activeActions: Record<number, sc.PlayerAction>;
+
+      preSkillInit(this: this): void;
+      update(this: this, config: sc.CombatParams.BaseParams, modifiers: sc.ModifierList): void;
     }
     interface PlayerSubConfigConstructor extends ImpactClass<PlayerSubConfig> {}
     var PlayerSubConfig: PlayerSubConfigConstructor;

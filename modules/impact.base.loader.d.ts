@@ -5,6 +5,11 @@ declare global {
     var fileForwarding: Record<string, string>;
     function getFilePath(path: string): string;
 
+    namespace Cacheable {
+      interface ImplementsCache<T extends ig.Loadable> {
+        cache: Record<string, T>;
+      }
+    }
     interface Cacheable extends ig.Class {
       cacheType: string;
 
@@ -30,6 +35,7 @@ declare global {
 
     interface JsonLoadable extends ig.Loadable, ig.Resource {
       onload(this: this, data: unknown): void;
+      getJsonPath(this: this): string;
     }
     interface JsonLoadableConstructor extends ImpactClass<JsonLoadable> {
       new (item: string): JsonLoadable;

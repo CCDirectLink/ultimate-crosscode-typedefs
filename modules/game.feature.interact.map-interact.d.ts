@@ -19,7 +19,7 @@ declare global {
     interface MapInteractIconConstructor extends ImpactClass<MapInteractIcon> {
       new (
         tilesheet: ig.TileSheet,
-        anims: Record<keyof typeof sc.INTERACT_ENTRY_STATE, number[]>,
+        anims: Partial<Record<keyof typeof sc.INTERACT_ENTRY_STATE, number[]>>,
         frameTime: number,
       ): MapInteractIcon;
     }

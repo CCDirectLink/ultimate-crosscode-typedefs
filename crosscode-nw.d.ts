@@ -2,3 +2,5 @@
 
 import './nw';
 import './crosscode';
+
+export * from './crosscode';

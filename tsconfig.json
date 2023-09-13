@@ -1,8 +1,8 @@
 {
-  "include": ["*.d.ts", "modules", "modloader", "file-types", "modloader-stdlib", "mods"],
+  "include": ["*.ts", "modules", "modloader", "file-types", "modloader-stdlib", "mods"],
   "compilerOptions": {
+    "module": "ES2015",
     "lib": ["ES6"],
-    "noEmit": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true
   }

@@ -1,3 +1,4 @@
 node_modules/
 .eslintcache
 README.md.html
+*.js

@@ -43,7 +43,10 @@ declare global {
         order: number;
         track: boolean;
         chests: number;
-        boosterItem: string;
+        boosterItem?: string;
+        keyItem?: string;
+        masterKeyItem?: string;
+        condition?: string;
         position: Vec2;
         landmarks: { [name: string]: Area.Landmark };
       }

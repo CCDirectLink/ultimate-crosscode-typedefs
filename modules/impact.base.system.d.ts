@@ -24,6 +24,8 @@ declare global {
       ingameTick: number;
       context: CanvasRenderingContext2D;
 
+      getScreenFromMapPos(this: this, dest: Vec2, x: number, y: number): Vec2;
+      getMapFromScreenPos(this: this, dest: Vec2, x: number, y: number): Vec2;
       setFocusLost(this: this): void;
       regainFocus(this: this): void;
       addFocusListener(this: this, listener: (focusLost: boolean) => void): void;

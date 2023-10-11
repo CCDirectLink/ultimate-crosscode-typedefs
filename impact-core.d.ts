@@ -18,7 +18,7 @@ declare global {
     function subC(v1: Vec2, x: number, y?: Optional<number>, dest?: Optional<Vec2>): Vec2;
     function mul(v1: Vec2, v2: Vec2, dest?: Optional<Vec2>): Vec2;
     function mulC(v: Vec2, x: number, y?: Optional<number>, dest?: Optional<Vec2>): Vec2;
-    function mulF(v1: Vec2, f: number, dest: Vec2): Vec2;
+    function mulF(v1: Vec2, f: number, dest?: Vec2): Vec2;
     function div(v1: Vec2, v2: Vec2, dest?: Optional<Vec2>): Vec2;
     function divC(v: Vec2, x: number, y?: Optional<number>, dest?: Optional<Vec2>): Vec2;
     function dot(v1: Vec2, v2: Vec2): Vec2;

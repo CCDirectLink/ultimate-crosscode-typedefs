@@ -24,7 +24,7 @@ declare global {
       sprites: ig.CubeSprite[];
       icon: number;
 
-      setState(this: this, state: sc.FOOD_ICON_STATE, offset?: Optional<Vec2>): void;
+      setState(this: this, state: sc.FOOD_ICON_STATE, offset?: Nullable<Vec2>): void;
       updateSprites(this: this): void;
     }
     interface FoodIconEntityConstructor extends ImpactClass<FoodIconEntity> {

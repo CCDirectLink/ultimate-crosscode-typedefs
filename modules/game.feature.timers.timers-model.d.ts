@@ -18,14 +18,14 @@ declare global {
                 this: this,
                 name: string,
                 mode: sc.TIMER_TYPES,
-                duration?: Optional<number>,
-                area?: Optional<string>,
-                temp?: Optional<boolean>,
-                showGui?: Optional<boolean>,
-                millis?: Optional<boolean>,
-                quest?: Optional<string>,
-                label?: Optional<string>,
-                k?: Optional<boolean>
+                duration?: Nullable<number>,
+                area?: Nullable<string>,
+                temp?: Nullable<boolean>,
+                showGui?: Nullable<boolean>,
+                millis?: Nullable<boolean>,
+                quest?: Nullable<string>,
+                label?: Nullable<string>,
+                k?: Nullable<boolean>
             ): void;
             stopTimer(this: this, name: string): void;
             resumeTimer(this: this, name: string): void;
@@ -47,8 +47,8 @@ declare global {
             duration: number;
             temp: boolean;
             millis: boolean;
-            area?: Optional<string>;
-            quest?: Optional<string>;
+            area?: Nullable<string>;
+            quest?: Nullable<string>;
         }
         interface TimerEntryContstructor extends ImpactClass<TimerEntry> {
             new(name: string, mode: sc.TIMER_TYPES, duration: number, area?: string, temp?: boolean, millis?: boolean, quest?: string): TimerEntry;

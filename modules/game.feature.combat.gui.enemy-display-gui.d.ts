@@ -11,11 +11,11 @@ declare global {
     interface EnemyDisplayGuiConstructor extends ImpactClass<EnemyDisplayGui> {
       new (
         enemyName: string,
-        skipIfLoaded?: Optional<boolean>,
-        anim?: Optional<string>,
-        callback?: Optional<sc.EnemyDisplayGui.LoadedCallback>,
-        random?: Optional<boolean>,
-        boosted?: Optional<boolean>,
+        skipIfLoaded?: Nullable<boolean>,
+        anim?: Nullable<string>,
+        callback?: Nullable<sc.EnemyDisplayGui.LoadedCallback>,
+        random?: Nullable<boolean>,
+        boosted?: Nullable<boolean>,
       ): EnemyDisplayGui;
     }
     var EnemyDisplayGui: EnemyDisplayGuiConstructor;

@@ -42,7 +42,7 @@ declare global {
       reset(this: this, time: number): void;
     }
     interface ActionBuffConstructor extends ImpactClass<ActionBuff> {
-      new (stats: sc.StatChange.StatName[], name: string, hacked?: Optional<boolean>): ActionBuff;
+      new (stats: sc.StatChange.StatName[], name: string, hacked?: Nullable<boolean>): ActionBuff;
     }
     var ActionBuff: ActionBuffConstructor;
 

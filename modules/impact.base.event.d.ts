@@ -15,8 +15,8 @@ declare global {
         this: this,
         event: ig.Event,
         runType: ig.EventRunType,
-        onStart?: Optional<() => void>,
-        onEnd?: Optional<() => void>,
+        onStart?: Nullable<() => void>,
+        onEnd?: Nullable<() => void>,
         input?: unknown,
         callEntity?: ig.Entity,
         data?: unknown
@@ -38,12 +38,12 @@ declare global {
       }
     }
     interface EventStepBase extends ig.StepBase {
-      _nextStep: Optional<ig.EventStepBase>;
+      _nextStep: Nullable<ig.EventStepBase>;
       branches: Record<string, ig.EventStepBase> | null | undefined;
 
       start(this: this, data?: unknown, eventCall?: ig.EventCall): void;
       run(this: this, data?: unknown): boolean;
-      getNext(this: this, data?: unknown): Optional<ig.EventStepBase>;
+      getNext(this: this, data?: unknown): Nullable<ig.EventStepBase>;
     }
     interface EventStepBaseConstructor extends ImpactClass<EventStepBase> {}
     var EventStepBase: EventStepBaseConstructor;

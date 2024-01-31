@@ -7,12 +7,12 @@ declare global {
     namespace ACTION_STEP {}
 
     interface ActionStepBase extends ig.StepBase {
-      _nextStep: Optional<ig.ActionStepBase>;
-      branches: Optional<Record<string, ig.ActionStepBase>>;
+      _nextStep: Nullable<ig.ActionStepBase>;
+      branches: Nullable<Record<string, ig.ActionStepBase>>;
 
       start(this: this, target: ig.ActorEntity): void;
       run(this: this, target: ig.ActorEntity): boolean;
-      getNext(this: this, target: ig.ActorEntity): Optional<ig.ActionStepBase>;
+      getNext(this: this, target: ig.ActorEntity): Nullable<ig.ActionStepBase>;
     }
     interface ActionStepBaseConstructor extends ImpactClass<ActionStepBase> {}
     var ActionStepBase: ActionStepBaseConstructor;
@@ -27,8 +27,8 @@ declare global {
       new (
         name: string,
         steps: any[], // TODO
-        parallelMove?: Optional<boolean>,
-        repeating?: Optional<boolean>,
+        parallelMove?: Nullable<boolean>,
+        repeating?: Nullable<boolean>,
       ): Action;
 
       getVec3(value: Vec3, actor: ig.ActorEntity, dest: Vec3): Vec3;

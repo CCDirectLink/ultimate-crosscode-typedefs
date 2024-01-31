@@ -31,10 +31,10 @@ declare global {
 
       onVisibilityChange(this: this, visible: boolean): void;
       setBeepSound(this: this, beepSound: ig.Sound): void;
-      setMaxWidth(this: this, maxWidth?: Optional<number>): void;
+      setMaxWidth(this: this, maxWidth?: Nullable<number>): void;
       setTextAlign(this: this, align: ig.Font.ALIGN): void;
       setTextSpeed(this: this, textSpeed: ig.TextBlock.SPEED): void;
-      setFont(this: this, font?: Optional<ig.MultiFont>, linePadding?: Optional<number>): void;
+      setFont(this: this, font?: Nullable<ig.MultiFont>, linePadding?: Nullable<number>): void;
       setDrawCallback(this: this, callback: ig.TextBlock.DrawCallback): void;
       setText(this: this, text: sc.TextLike): void;
       clear(this: this): void;

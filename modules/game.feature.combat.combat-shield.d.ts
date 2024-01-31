@@ -10,7 +10,7 @@ declare global {
         combatant: sc.PlayerBaseEntity,
         attackingEntity: sc.BasicCombatant.DamagingEntity,
         attackInfo: sc.AttackInfo,
-        receivingPart: Optional<sc.BasicCombatant.DamagingEntity>,
+        receivingPart: Nullable<sc.BasicCombatant.DamagingEntity>,
         isPerfect: boolean,
       ): boolean;
     }
@@ -26,7 +26,7 @@ declare global {
       new (
         combatant: ig.ENTITY.Combatant,
         shield: sc.CombatShield,
-        perfectGuardTime?: Optional<number>,
+        perfectGuardTime?: Nullable<number>,
       ): CombatantShieldConnection;
     }
     var CombatantShieldConnection: CombatantShieldConnectionConstructor;

@@ -22,18 +22,18 @@ declare global {
 
     interface ArenaEntryButton extends sc.ListBoxButton {
       trophyGfx: ig.Image;
-      key: Optional<string>
-      description: Optional<string>;
+      key: Nullable<string>
+      description: Nullable<string>;
       decoration: ig.ImageGui;
 
-      setDecoration(this: this, medal: Optional<sc.ARENA_MEDALS_TROPHIES>): void;
+      setDecoration(this: this, medal: Nullable<sc.ARENA_MEDALS_TROPHIES>): void;
     }
     interface ArenaEntryButtonConstructor extends ImpactClass<ArenaEntryButton> {
       new (
         text: string,
-        key: Optional<string>,
-        description: Optional<string>,
-        medal: Optional<sc.ARENA_MEDALS_TROPHIES>,
+        key: Nullable<string>,
+        description: Nullable<string>,
+        medal: Nullable<sc.ARENA_MEDALS_TROPHIES>,
       ): ArenaEntryButton;
     }
     var ArenaEntryButton: ArenaEntryButtonConstructor;
@@ -46,11 +46,11 @@ declare global {
     interface ArenaRoundEntryButtonConstructor extends ImpactClass<ArenaRoundEntryButton> {
       new (
         text: string,
-        key: Optional<string>,
+        key: Nullable<string>,
         index: number,
-        description: Optional<string>,
-        totalRounds: Optional<number>,
-        medal: Optional<sc.ARENA_MEDALS_TROPHIES>,
+        description: Nullable<string>,
+        totalRounds: Nullable<number>,
+        medal: Nullable<sc.ARENA_MEDALS_TROPHIES>,
       ): ArenaRoundEntryButton;
     }
     var ArenaRoundEntryButton: ArenaRoundEntryButtonConstructor;

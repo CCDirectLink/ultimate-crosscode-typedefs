@@ -89,7 +89,7 @@ declare global {
       getStat<K extends sc.CombatParams.ParamName>(
         this: this,
         key: K,
-        noHack?: Optional<boolean>,
+        noHack?: Nullable<boolean>,
       ): sc.CombatParams.Params[K];
       getModifier(this: this, modifier: keyof sc.MODIFIERS): number;
       setCombatant(this: this, combatant: ig.ENTITY.Combatant): void;

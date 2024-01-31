@@ -98,7 +98,7 @@ declare global {
       key: string;
       name?: ig.LangLabel;
       description?: ig.LangLabel;
-      dmgType?: Optional<sc.ACTION_DMG_TYPE>;
+      dmgType?: Nullable<sc.ACTION_DMG_TYPE>;
       stunType?: sc.ACTION_STUN_TYPE | false;
       icon?: ig.Image;
     }

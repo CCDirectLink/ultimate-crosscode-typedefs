@@ -49,10 +49,10 @@ declare global {
 
       reset(this: this, x: number, y: number, z: number, settings: ig.Entity.Settings): void;
       initSprites(this: this): void;
-      setPos(this: this, x?: number, y?: number, z?: number, moveDelta?: Optional<boolean>): void;
+      setPos(this: this, x?: number, y?: number, z?: number, moveDelta?: Nullable<boolean>): void;
       setZPos(this: this, z: number): void;
-      getCenter(this: this, destination?: Optional<Vec2>): Vec2;
-      getAlignedPos(this: this, alignment: ig.ENTITY_ALIGN, dest?: Optional<Vec3>): Vec3;
+      getCenter(this: this, destination?: Nullable<Vec2>): Vec2;
+      getAlignedPos(this: this, alignment: ig.ENTITY_ALIGN, dest?: Nullable<Vec3>): Vec3;
       getCollideSide(this: this, otherEntity: ig.Entity): ig.ActorEntity.FACE4;
       update(this: this): void;
       setSpriteCount(this: this, count: number, guiSprites?: boolean): void;
@@ -62,7 +62,7 @@ declare global {
       clearEntityAttached(this: this, conditionCallback: (attachable: ig.Entity.Attachable) => boolean): void;
       show(this: this): void;
       hide(this: this): void;
-      kill(this: this, levelChange?: Optional<boolean>): void;
+      kill(this: this, levelChange?: Nullable<boolean>): void;
       onKill(this: this): void;
       erase(this: this): void;
       collideWith(this: this, entity: ig.Entity, dir: Vec2): void;
@@ -118,7 +118,7 @@ declare global {
       currentAnim: string;
 
       initAnimations(this: this, sheet: ig.AnimationSheet | string | unknown): void;
-      setCurrentAnim(this: this, name: string, reset?: boolean, followUp?: Optional<string>, force?: boolean, callbackOnFinish?: boolean): void;
+      setCurrentAnim(this: this, name: string, reset?: boolean, followUp?: Nullable<string>, force?: boolean, callbackOnFinish?: boolean): void;
     }
     interface AnimatedEntityConstructor extends ImpactClass<AnimatedEntity> {
       new (x: number, y: number, z: number, settings: ig.AnimatedEntity.Settings): AnimatedEntity;

@@ -114,10 +114,10 @@ declare global {
       addPartyMember(
         this: this,
         name: string,
-        npc?: Optional<ig.ENTITY.NPC>,
-        noEntityUpdate?: Optional<boolean>,
-        skipEffect?: Optional<boolean>,
-        temporary?: Optional<boolean>
+        npc?: Nullable<ig.ENTITY.NPC>,
+        noEntityUpdate?: Nullable<boolean>,
+        skipEffect?: Nullable<boolean>,
+        temporary?: Nullable<boolean>
       ): void;
       removePartyMember(this: this, name: string, npc?: ig.ENTITY.NPC, skipEffect?: boolean): void;
       reviveAllPartyMembers(this: this): void;

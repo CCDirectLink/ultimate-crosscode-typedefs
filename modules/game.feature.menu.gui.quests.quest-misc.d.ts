@@ -22,11 +22,11 @@ declare global {
       levelGui: sc.NumberGui;
       elite: number;
 
-      setLevel(this: this, level?: Optional<number>): void;
+      setLevel(this: this, level?: Nullable<number>): void;
       setElite(this: this, isElite: boolean, isSolved: boolean): void;
     }
     interface QuestBaseBoxConstructor extends ImpactClass<QuestBaseBox> {
-      new (width?: Optional<number>, height?: Optional<number>, level?: Optional<number>): QuestBaseBox;
+      new (width?: Nullable<number>, height?: Nullable<number>, level?: Nullable<number>): QuestBaseBox;
     }
     var QuestBaseBox: QuestBaseBoxConstructor;
 
@@ -74,16 +74,16 @@ declare global {
       gfx: ig.Image;
       titleGui: sc.TextGui;
       descriptionGui: sc.TextGui;
-      endDescriptionGui: Optional<sc.TextGui>;
-      firstTaskGui: Optional<sc.TextGui>;
+      endDescriptionGui: Nullable<sc.TextGui>;
+      firstTaskGui: Nullable<sc.TextGui>;
       expGui: sc.TextGui;
       creditGui: sc.TextGui;
       cpGui: sc.TextGui;
       itemsGui: ig.GuiElementBase;
-      solvedGui: Optional<sc.SolvedLine>;
+      solvedGui: Nullable<sc.SolvedLine>;
       quest: sc.Quest;
 
-      setQuest(this: this, quest?: Optional<sc.Quest>): void;
+      setQuest(this: this, quest?: Nullable<sc.Quest>): void;
       setQuestRewards(this: this, quest: sc.Quest, hideRewards: boolean, finished: boolean): void;
     }
     interface QuestDialogConstructor extends ImpactClass<QuestDialog> {

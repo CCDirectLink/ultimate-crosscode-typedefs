@@ -34,7 +34,7 @@ declare global {
       maxAlpha: number;
       glow: boolean;
       timer: number;
-      offset?: Optional<Vec3>;
+      offset?: Nullable<Vec3>;
 
       setOffset(this: this, x: number, y: number, z: number): void;
       stop(this: this): void;
@@ -45,11 +45,11 @@ declare global {
       new(
         entity: ig.Entity,
         size?: ig.LIGHT_SIZE,
-        fadeIn?: Optional<number>,
-        fadeOut?: Optional<number>,
-        duration?: Optional<number>,
-        maxAlpha?: Optional<number>,
-        glow?: Optional<boolean>
+        fadeIn?: Nullable<number>,
+        fadeOut?: Nullable<number>,
+        duration?: Nullable<number>,
+        maxAlpha?: Nullable<number>,
+        glow?: Nullable<boolean>
       ): LightHandle;
     }
     let LightHandle: LightHandleConstructor;

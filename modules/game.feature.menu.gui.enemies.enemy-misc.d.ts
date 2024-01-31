@@ -24,7 +24,7 @@ declare global {
       level: sc.NumberGui;
     }
     interface EnemyEntryButtonConstructor extends ImpactClass<EnemyEntryButton> {
-      new (text: sc.TextLike, key?: Optional<string>, level?: Optional<number>): EnemyEntryButton;
+      new (text: sc.TextLike, key?: Nullable<string>, level?: Nullable<number>): EnemyEntryButton;
     }
     var EnemyEntryButton: EnemyEntryButtonConstructor;
   }

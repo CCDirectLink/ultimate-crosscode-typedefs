@@ -14,7 +14,7 @@ declare global {
             timer: number;
             combatant: ig.ENTITY.Combatant;
             state: number;
-            panel?: Optional<ig.ENTITY.WaterBubblePanel>;
+            panel?: Nullable<ig.ENTITY.WaterBubblePanel>;
 
             slide(this: this, dir: Vec2, combatant: ig.ENTITY.Combatant): void;
         }

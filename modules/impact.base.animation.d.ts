@@ -24,9 +24,9 @@ declare global {
         imageSrc: string,
         width: number,
         height: number,
-        offX?: Optional<number>,
-        offY?: Optional<number>,
-        xCount?: Optional<number>,
+        offX?: Nullable<number>,
+        offY?: Nullable<number>,
+        xCount?: Nullable<number>,
       ): TileSheet;
     }
     var TileSheet: TileSheetConstructor;

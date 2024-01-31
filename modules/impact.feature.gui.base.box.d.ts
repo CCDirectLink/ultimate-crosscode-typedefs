@@ -34,8 +34,8 @@ declare global {
         width: number,
         height: number,
         tileOffset: string,
-        offX?: Optional<number>,
-        offY?: Optional<number>,
+        offX?: Nullable<number>,
+        offY?: Nullable<number>,
       ): void;
       drawComposite(
         renderer: ig.GuiRenderer,
@@ -43,8 +43,8 @@ declare global {
         height: number,
         tileOffset: string,
         composite: string,
-        offX?: Optional<number>,
-        offY?: Optional<number>,
+        offX?: Nullable<number>,
+        offY?: Nullable<number>,
       ): void;
     }
     interface NinePatchConstructor extends ImpactClass<NinePatch> {
@@ -64,8 +64,8 @@ declare global {
       new (
         width: number,
         height: number,
-        flipped?: Optional<boolean>,
-        ninepatch?: Optional<ig.NinePatch>,
+        flipped?: Nullable<boolean>,
+        ninepatch?: Nullable<ig.NinePatch>,
       ): BoxGui;
     }
     var BoxGui: BoxGuiConstructor;

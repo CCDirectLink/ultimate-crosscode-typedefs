@@ -186,9 +186,9 @@ declare global {
       setScrollY(
         this: this,
         value: number,
-        skipTransition?: Optional<boolean>,
-        time?: Optional<number>,
-        timeFunction?: Optional<KeySpline>,
+        skipTransition?: Nullable<boolean>,
+        time?: Nullable<number>,
+        timeFunction?: Nullable<KeySpline>,
       ): void;
       recalculateScrollBars(this: this, skipTransition?: boolean): void;
       getScrollY(this: this): number;

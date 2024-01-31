@@ -5,10 +5,10 @@ export {};
 declare global {
   namespace ig {
     interface ImageGui extends ig.GuiElementBase {
-      image?: Optional<ig.Image>;
+      image?: Nullable<ig.Image>;
       offsetX: number;
       offsetY: number;
-      renderMode?: Optional<string>;
+      renderMode?: Nullable<string>;
       flipX: boolean;
       flipY: boolean;
       pivotOverride: boolean;
@@ -16,26 +16,26 @@ declare global {
       setImage(
         this: this,
         image: ig.Image,
-        offsetX?: Optional<number>,
-        offsetY?: Optional<number>,
-        width?: Optional<number>,
-        height?: Optional<number>,
+        offsetX?: Nullable<number>,
+        offsetY?: Nullable<number>,
+        width?: Nullable<number>,
+        height?: Nullable<number>,
       ): void;
     }
     interface ImageGuiConstructor extends ImpactClass<ImageGui> {
       new (
-        image?: Optional<ig.Image>,
-        offsetX?: Optional<number>,
-        offsetY?: Optional<number>,
-        width?: Optional<number>,
-        height?: Optional<number>,
+        image?: Nullable<ig.Image>,
+        offsetX?: Nullable<number>,
+        offsetY?: Nullable<number>,
+        width?: Nullable<number>,
+        height?: Nullable<number>,
       ): ig.ImageGui;
     }
     var ImageGui: ImageGuiConstructor;
 
     interface ColorGui extends ig.GuiElementBase {
       color: string;
-      renderMode?: Optional<string>;
+      renderMode?: Nullable<string>;
     }
     interface ColorGuiConstructor extends ImpactClass<ColorGui> {
       new (color: string, width: number, height: number): ColorGui;

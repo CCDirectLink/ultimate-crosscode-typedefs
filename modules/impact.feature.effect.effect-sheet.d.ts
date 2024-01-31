@@ -17,15 +17,15 @@ declare global {
       loadParticleData(
         animSheet: ig.AnimationSheet,
         settings: ig.EffectStepBase.Settings,
-        cacheKey: Optional<string>,
+        cacheKey: Nullable<string>,
       ): ig.ParticleData;
     }
     var EffectConfig: EffectConfigConstructor;
 
     interface ParticleData {
       anim: ig.BaseAnimationSet;
-      followUpAnim?: Optional<ig.BaseAnimationSet>;
-      postAnim?: Optional<ig.BaseAnimationSet>;
+      followUpAnim?: Nullable<ig.BaseAnimationSet>;
+      postAnim?: Nullable<ig.BaseAnimationSet>;
       state: ig.ParticleState;
       moveWithTarget: number;
       particleDuration: number;
@@ -62,7 +62,7 @@ declare global {
         this: this,
         name: string,
         target: ig.Entity,
-        settings?: Optional<ig.EffectSheet.SpawnSettings>,
+        settings?: Nullable<ig.EffectSheet.SpawnSettings>,
       ): ig.ENTITY.Effect;
       spawnFixed(
         this: this,
@@ -71,7 +71,7 @@ declare global {
         y: number,
         z: number,
         target: ig.Entity,
-        settings?: Optional<ig.EffectSheet.SpawnSettings>,
+        settings?: Nullable<ig.EffectSheet.SpawnSettings>,
       ): ig.ENTITY.Effect | null;
     }
     interface EffectSheetConstructor extends ImpactClass<EffectSheet> {
@@ -92,8 +92,8 @@ declare global {
       externalSheet: boolean;
 
       clearCached(this: this): void;
-      spawnOnTarget(this: this, target: ig.Entity, settings?: Optional<ig.EffectSheet.SpawnSettings>): ig.ENTITY.Effect;
-      spawnFixed(this: this, x: number, y: number, z: number, target: ig.Entity, settings?: Optional<ig.EffectSheet.SpawnSettings>): ig.ENTITY.Effect;
+      spawnOnTarget(this: this, target: ig.Entity, settings?: Nullable<ig.EffectSheet.SpawnSettings>): ig.ENTITY.Effect;
+      spawnFixed(this: this, x: number, y: number, z: number, target: ig.Entity, settings?: Nullable<ig.EffectSheet.SpawnSettings>): ig.ENTITY.Effect;
     }
     interface EffectHandleConstructor extends ImpactClass<EffectHandle> {
       new (settings: EffectHandle.Settings): ig.EffectHandle;
@@ -104,23 +104,23 @@ declare global {
     namespace EffectStepBase {
       interface Settings {
         anim: string;
-        followUpAnim?: Optional<string>;
-        postAnim?: Optional<string>;
-        pAlpha?: Optional<number>;
-        pScale?: Optional<number>;
-        pRotate?: Optional<number>;
-        angleVary?: Optional<number>;
-        randFlip?: Optional<boolean>;
-        moveWithTarget?: Optional<number>;
+        followUpAnim?: Nullable<string>;
+        postAnim?: Nullable<string>;
+        pAlpha?: Nullable<number>;
+        pScale?: Nullable<number>;
+        pRotate?: Nullable<number>;
+        angleVary?: Nullable<number>;
+        randFlip?: Nullable<boolean>;
+        moveWithTarget?: Nullable<number>;
         pLight?: keyof typeof ig.LIGHT_SIZE | null;
-        particleDuration?: Optional<number>;
-        particleDurVariance?: Optional<number>;
-        cancelable?: Optional<boolean>;
+        particleDuration?: Nullable<number>;
+        particleDurVariance?: Nullable<number>;
+        cancelable?: Nullable<boolean>;
       }
     }
     interface EffectStepBase extends ig.StepBase {
-      _nextStep: Optional<ig.EffectStepBase>;
-      branches: Optional<Record<string, ig.EffectStepBase>>;
+      _nextStep: Nullable<ig.EffectStepBase>;
+      branches: Nullable<Record<string, ig.EffectStepBase>>;
 
       start(this: this, entity: ig.ENTITY.Effect): void;
       run(this: this, entity: ig.ENTITY.Effect): boolean;

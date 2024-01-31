@@ -27,10 +27,10 @@ declare global {
         this: this,
         newX: number,
         newY: number,
-        ignoreCallbacks?: Optional<boolean>,
-        ignoreSounds?: Optional<boolean>,
-        ignoreIfSame?: Optional<boolean>,
-        ignoreEmptyCells?: Optional<boolean>,
+        ignoreCallbacks?: Nullable<boolean>,
+        ignoreSounds?: Nullable<boolean>,
+        ignoreIfSame?: Nullable<boolean>,
+        ignoreEmptyCells?: Nullable<boolean>,
       ): void;
     }
     interface ButtonGroupConstructor extends ImpactClass<ButtonGroup> {}
@@ -42,7 +42,7 @@ declare global {
         this: this,
         button: sc.ButtonGui,
         hotkeyCallback: () => boolean,
-        noDoubles?: Optional<boolean>,
+        noDoubles?: Nullable<boolean>,
       ): void;
       removeGlobalButton(this: this, button: sc.ButtonGui): void;
       addParallelGroup(this: this, buttongroup: sc.ButtonGroup): void;

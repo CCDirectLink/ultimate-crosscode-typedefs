@@ -58,10 +58,10 @@ declare global {
         cost: number;
         noTrack: boolean;
         sources: sc.Inventory.ItemSource[];
-        equipType?: Optional<sc.ITEMS_EQUIP_TYPES>;
-        isScalable?: Optional<boolean>;
-        stats?: Optional<string[]>;
-        time?: Optional<number>;
+        equipType?: Nullable<sc.ITEMS_EQUIP_TYPES>;
+        isScalable?: Nullable<boolean>;
+        stats?: Nullable<string[]>;
+        time?: Nullable<number>;
         isBuff?: boolean;
         foodSprite?: string;
         // TODO
@@ -78,7 +78,7 @@ declare global {
             value: {
               text: ig.LangLabel.Data;
               icon: ItemSource['type'];
-              subText?: Optional<ig.LangLabel.Data>;
+              subText?: Nullable<ig.LangLabel.Data>;
               arrow: boolean;
             };
           };
@@ -88,7 +88,7 @@ declare global {
       scalable: number[];
 
       updateScaledEquipment(this: this, newLevel: number): void;
-      getItem(id: sc.ItemID): Optional<sc.Inventory.Item>;
+      getItem(id: sc.ItemID): Nullable<sc.Inventory.Item>;
       getItemName(this: this, id: sc.ItemID): string;
       getBuffString(this: this, id: sc.ItemID, a?: boolean, statChangeSettings?: string[]): string | undefined;
       isBuffID(this: this, id: sc.ItemID): boolean

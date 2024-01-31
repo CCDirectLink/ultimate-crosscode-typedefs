@@ -16,7 +16,7 @@ declare global {
         this: this,
         destVec: Vec2,
         lastRelativeVel: number,
-        ignoreLastDir?: Optional<number>,
+        ignoreLastDir?: Nullable<number>,
       ): number;
       menuBack(this: this): boolean;
       menuHotkeyHelp(this: this): boolean;

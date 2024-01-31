@@ -19,8 +19,8 @@ declare global {
       show(
         this: this,
         quest: sc.Quest,
-        dontSkip?: Optional<boolean>,
-        skipIfChildren?: Optional<boolean>,
+        dontSkip?: Nullable<boolean>,
+        skipIfChildren?: Nullable<boolean>,
       ): void;
       hide(this: this): void;
     }
@@ -60,7 +60,7 @@ declare global {
       activeView: sc.QuestDetailTasks;
       solvedView: sc.QuestDetailsSolved;
       buttongroup: sc.ButtonGroup;
-      taskButton: Optional<sc.ButtonGui>;
+      taskButton: Nullable<sc.ButtonGui>;
       taskSwitch: boolean;
       lines: ig.ColorGui[];
       currentQuest: sc.Quest;

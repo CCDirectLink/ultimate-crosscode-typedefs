@@ -32,7 +32,7 @@ declare global {
       name: sc.MapNameGui;
       hasText: boolean;
 
-      setText(this: this, text: sc.TextLike, wait?: Optional<boolean>, skip?: Optional<boolean>): void;
+      setText(this: this, text: sc.TextLike, wait?: Nullable<boolean>, skip?: Nullable<boolean>): void;
     }
     interface WorldmapAreaNameConstructor extends ImpactClass<WorldmapAreaName> {
       new (): WorldmapAreaName;

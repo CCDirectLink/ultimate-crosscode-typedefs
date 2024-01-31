@@ -39,13 +39,13 @@ declare global {
       getActiveElement(this: this): sc.ShopItemButton;
       changeCount(this: this, direction: 1 | -1): void;
       playSound(this: this, direction: 1 | -1, repeater: boolean): void;
-      updateListEntries(this: this, resetCounters?: Optional<boolean>): void;
+      updateListEntries(this: this, resetCounters?: Nullable<boolean>): void;
       createBuyList(
         this: this,
-        refocus?: Optional<boolean>,
-        fromMouse?: Optional<boolean>,
-        skipSounds?: Optional<boolean>,
-        sortType?: Optional<sc.SORT_TYPE>,
+        refocus?: Nullable<boolean>,
+        fromMouse?: Nullable<boolean>,
+        skipSounds?: Nullable<boolean>,
+        sortType?: Nullable<sc.SORT_TYPE>,
       ): void;
       scrapSellList(this: this, shopItems: sc.ItemID[]): void;
       scrapBuyList(this: this, shopItems: ig.Database.ShopItem[]): void;

@@ -33,10 +33,10 @@ declare global {
     interface ModalButtonInteractConstructor extends ImpactClass<ModalButtonInteract> {
       new (
         text: sc.TextLike,
-        icon: Optional<sc.DIALOG_INFO_ICON>,
+        icon: Nullable<sc.DIALOG_INFO_ICON>,
         options: sc.TextLike[],
         callback: (button: sc.ButtonGui) => void,
-        disableSubmitSound?: Optional<boolean>,
+        disableSubmitSound?: Nullable<boolean>,
       ): ModalButtonInteract;
     }
     var ModalButtonInteract: ModalButtonInteractConstructor;
@@ -44,9 +44,9 @@ declare global {
     interface Dialogs {
       showYesNoDialog(
         this: this,
-        text?: Optional<sc.TextLike>,
-        icon?: Optional<sc.DIALOG_INFO_ICON>,
-        callback?: Optional<(button: sc.ButtonGui & {data: number}, dialog?: sc.ModalButtonInteract) => void>,
+        text?: Nullable<sc.TextLike>,
+        icon?: Nullable<sc.DIALOG_INFO_ICON>,
+        callback?: Nullable<(button: sc.ButtonGui & {data: number}, dialog?: sc.ModalButtonInteract) => void>,
         noSubmitSound?: boolean,
       ): void;
     }

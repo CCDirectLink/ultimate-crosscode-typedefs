@@ -23,8 +23,8 @@ declare global {
       setImageSrc(
         this: this,
         image: ig.Drawable | ig.DoubleColor,
-        offsetX?: Optional<number>,
-        offsetY?: Optional<number>,
+        offsetX?: Nullable<number>,
+        offsetY?: Nullable<number>,
       ): void;
       setOverlayColor(this: this, color: string, alpha: number): void;
       setLighterOverlayColor(this: this, color: string, alpha: number): void;

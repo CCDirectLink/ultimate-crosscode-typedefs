@@ -14,20 +14,20 @@ declare global {
       buttonGroup: sc.ButtonGroup;
       contentPane: ig.GuiElementBase;
 
-      activate(buttonInteract?: Optional<ig.ButtonInteractEntry>): void;
+      activate(buttonInteract?: Nullable<ig.ButtonInteractEntry>): void;
       addButton(
         button: ig.GuiElementBase,
         skipButtonGroup: true,
-        xOffset?: Optional<number>,
-        yOffset?: Optional<number>,
+        xOffset?: Nullable<number>,
+        yOffset?: Nullable<number>,
       ): void;
       addButton(
         button: ig.FocusGui,
-        skipButtonGroup?: Optional<false>,
-        xOffset?: Optional<number>,
-        yOffset?: Optional<number>,
+        skipButtonGroup?: Nullable<false>,
+        xOffset?: Nullable<number>,
+        yOffset?: Nullable<number>,
       ): void;
-      clear(this: this, skip?: Optional<boolean>): void;
+      clear(this: this, skip?: Nullable<boolean>): void;
       scrollToY(this: this, y: number, b: boolean): void;
     }
     interface ButtonListBoxConstructor extends ImpactClass<ButtonListBox> {}
@@ -36,7 +36,7 @@ declare global {
     interface ItemListBox extends ig.GuiElementBase {
       list: sc.ButtonListBox;
 
-      clear(this: this, skip?: Optional<boolean>): void;
+      clear(this: this, skip?: Nullable<boolean>): void;
       addButton(this: this, gui: ig.FocusGui): void;
       getChildren(this: this): ig.FocusGui[];
     }

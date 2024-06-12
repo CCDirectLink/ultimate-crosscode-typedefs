@@ -4,7 +4,8 @@
     "module": "ES2015",
     "lib": ["ES6"],
     "strict": true,
-    "skipLibCheck": true,
+    "moduleResolution": "node",
+    // "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   }
 }

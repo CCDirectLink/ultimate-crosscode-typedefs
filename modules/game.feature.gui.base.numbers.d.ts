@@ -44,9 +44,10 @@ declare global {
       }
     }
     interface NumberGui extends ig.GuiElementBase {
-      showPlus: boolean;
       maxNumber: number;
+      showPlus: boolean;
       targetNumber: number; 
+      scramble: boolean
 
       setNumber(this: this, number: number, skipTransition?: Nullable<boolean>): void;
       setMaxNumber(this: this, number: number): void;

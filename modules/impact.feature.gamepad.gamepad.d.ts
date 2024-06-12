@@ -30,12 +30,14 @@ declare global {
             RIGHT_STICK_Y = 3
         }
         interface GamepadManager extends ig.GameAddon {
+            activeGamepads: ig.Gamepad[]
+
             isButtonPressed(this: this, button: ig.BUTTONS): boolean;
             isButtonReleased(this: this, button: ig.BUTTONS): boolean;
             isButtonDown(this: this, button: ig.BUTTONS): boolean;
             getButtonValue(this: this, button: ig.BUTTONS): number;
 
-            getAxesValue(this: this, axis: ig.AXES, clipDeadZone: number): number;
+            getAxesValue(this: this, axis: ig.AXES, clipDeadZone?: number): number;
             isAxesDown(this: this, axis: ig.AXES): boolean;
             isLeftStickDown(this: this): boolean;
             isRightStickDown(this: this): boolean;
@@ -46,5 +48,18 @@ declare global {
 
         let gamepad: GamepadManager;
         let GamepadManager: GamepadManagerConstructor;
+
+        interface Gamepad extends ig.Class {
+            buttonDeadzones: Record<ig.BUTTONS, boolean>
+            axesDeadzones: Record<ig.BUTTONS, boolean>
+            buttonStates: Record<ig.BUTTONS, boolean>
+            axesStates: Record<ig.BUTTONS, boolean>
+            pressedStates: Record<ig.BUTTONS, boolean>
+            releasedStates: Record<ig.BUTTONS, boolean>
+        }
+        interface GamepadConstructor extends ImpactClass<Gamepad> {
+            new (): Gamepad
+        }
+        var Gamepad: GamepadConstructor
     }
 }

@@ -91,6 +91,14 @@ declare global {
         targeting: number;
         aggressive: number;
       }
+      interface Data {
+        models: Record<string, sc.PartyMemberModel.Data>
+        currentParty: sc.PartyModel['currentParty']
+        contacts: sc.PartyModel['contacts']
+        strategies: sc.PartyModel['strategyKeys']
+        dungeonBlocked: sc.PartyModel['dungeonBlocked']
+        lastAreaDungeon: sc.PartyModel['lastAreaDungeon']
+      }
     }
     interface PartyModel extends ig.GameAddon, sc.Model, ig.Vars.Accessor, ig.Storage.Listener {
       models: Record<string, sc.PartyMemberModel>;

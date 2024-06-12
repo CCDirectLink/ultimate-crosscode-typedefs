@@ -21,14 +21,14 @@ declare global {
     function mulF(v1: Vec2, f: number, dest?: Vec2): Vec2;
     function div(v1: Vec2, v2: Vec2, dest?: Nullable<Vec2>): Vec2;
     function divC(v: Vec2, x: number, y?: Nullable<number>, dest?: Nullable<Vec2>): Vec2;
-    function dot(v1: Vec2, v2: Vec2): Vec2;
-    function dotR(v1: Vec2, v2: Vec2): Vec2;
+    function dot(v1: Vec2, v2: Vec2): number;
+    function dotR(v1: Vec2, v2: Vec2): number;
     //the length function behaves differently depending if newLength is passed in.
     function length(v: Vec2): number;
     function length(v: Vec2, newLength: number, dest?: Nullable<Vec2>): Vec2;
     function limit(v: Vec2, min: number, max: number, dest?: Nullable<Vec2>): Vec2;
     function normalize(v: Vec2, dest?: Nullable<Vec2>): Vec2;
-    function clockangle(v: Vec2): Vec2;
+    function clockangle(v: Vec2): number;
     function angle(v1: Vec2, v2: Vec2): number;
     function angle3Point(start: Vec2, dest1: Vec2, dest2: Vec2): number;
     function areClockwise(v1: Vec2, v2: Vec2): boolean;
@@ -62,7 +62,7 @@ declare global {
   }
 
   namespace Vec3 {
-    function create(): Vec3;
+    function create(otherVec?: Nullable<Vec3>): Vec3;
     function createC(x?: number, y?: number, z?: number): Vec3;
     function assign(v1: Vec3, v2: Vec3): Vec3;
     function assignC(v: Vec3, x?: number, y?: number, z?: number): Vec3;
@@ -196,7 +196,13 @@ declare global {
       WIIU = 4,
     }
 
+    var OS: string
     var platform: ig.PLATFORM_TYPES;
+    function getPlatformName(platformId: ig.PLATFORM_TYPES): 'Unknown' | 'Dekstop' | 'Browser' | 'Mobile' | 'WiiU' | 'Say Wat?'
+    var browser: string
+    var browserVersion: string
+    var nwjsVersion: string
+    var nwjs64: boolean
 
     interface Perf {
         update: boolean;

@@ -101,6 +101,7 @@ declare global {
       hasDivider?: boolean;
       header?: string;
       restart?: boolean;
+      hasLocal?: boolean /* the game checks for it in some places, but none of the options have it */
     }
 
     type OptionDefinition = OptionDefinitionCommon &
@@ -231,7 +232,11 @@ declare global {
       hasChanged: boolean;
       values: ig.Storage.GlobalsData.Options;
 
+      persistOptions(this: this): void;
       dispatchKeySwappedEvent(this: this): void;
+      set<K extends keyof sc.OPTIONS_DEFINITION.KnownTypesMap>(
+        this: this, key: K, value: sc.OPTIONS_DEFINITION.KnownTypesMap[K]['init']): void;
+      set(this: this, key: string, value: any): void;
       get<K extends keyof sc.OPTIONS_DEFINITION.KnownTypesMap>(
         this: this,
         key: K,

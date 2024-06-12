@@ -33,6 +33,8 @@ declare global {
 
     interface AnimationState extends ig.Class {
       timer: number;
+
+      getFrame(this: this): number
     }
     interface AnimationStateConstructor extends ImpactClass<AnimationState> {
       new (): AnimationState;

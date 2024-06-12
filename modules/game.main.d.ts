@@ -18,6 +18,7 @@ declare global {
       effects: Record<"dust" | "teleport" | "npc" | "death" | "speedlines" | "drops", ig.EffectSheet>;
 
       onGameLoopStart(this: this): void;
+      getVersion(this: this): string
       addTeleportMessage(this: this, message: string): void;
       start(this: this, startMode?: sc.START_MODE, transitionTime?: number): void;
       transitionEnded(this: this): void;

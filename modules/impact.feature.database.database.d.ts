@@ -9,6 +9,8 @@ declare global {
       interface Data {
         areas: { [name: string]: sc.MapModel.Area };
         enemies: { [id: string]: EnemyData };
+        leawords: string[]
+        lore: Record<string, LoreData>
         shops: { [id: string]: ShopData };
         traders: { [id: string]: sc.TradeModel.Trader };
         chapters: Chapter[];
@@ -21,6 +23,27 @@ declare global {
         descriptions: EnemyDescriptionBlock[];
         boostedLevel: number;
         boss: boolean;
+        track?: boolean
+      }
+
+      interface LoreData {
+        title: ig.LangLabel.Data
+        order: number
+        category: 'STORY' | 'CHARACTERS' | 'CROSS_LORE' | 'EARTH_LORE'
+        content: Record<string, {
+          content: ig.LangLabel.Data
+          switchPage?: boolean
+          image?: { src: string, offX: number, offY: number, width: number, height: number }
+          options?: { allgn: string, wrap: boolean }
+          condition?: string
+          hr?: boolean
+          altContent?: {
+            content: ig.LangLabel.Data
+            condition: string
+          }
+        }>
+        parent?: string
+        extension?: string
       }
 
       interface EnemyDescriptionBlock {

@@ -10,6 +10,7 @@ declare global {
       spriteFilter: number[];
 
       setIgnoreSlowdown(this: this): void;
+      stop(this: this): void
       isDone(this: this): boolean;
       spawnParticle<E extends ig.Entity, S extends ig.Entity.Settings>(
         this: this,

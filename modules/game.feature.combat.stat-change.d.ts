@@ -34,6 +34,15 @@ declare global {
     }
     var StatChange: StatChangeConstructor;
 
+    interface ItemBuff extends sc.StatChange {
+      itemID: number
+    }
+    interface ItemBuffConstructor extends ImpactClass<ItemBuff> {
+      new (effectArr: string[], duration: number, itemId: number): ItemBuff
+    }
+    var ItemBuff: ItemBuffConstructor
+
+
     interface ActionBuff extends sc.StatChange, ig.Entity.Attachable, sc.Combat.ActionAttached {
       active: boolean;
       name: string;

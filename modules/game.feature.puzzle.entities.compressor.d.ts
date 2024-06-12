@@ -14,6 +14,19 @@ declare global {
                     fastMode?: boolean;
                 }
             }
+            interface Compressor extends ig.AnimatedEntity {
+                currentElement: sc.ELEMENT
+                compressorBall: sc.CompressedBaseEntity
+                ballSpeed: number
+                fastMode: boolean
+
+                createCompressorBall(this: this): void
+            }
+            interface CompressorConstructor extends ImpactClass<Compressor> {
+                new (x: number, y: number, z: number, settings: ig.ENTITY.Compressor.Settings): Compressor
+            }
+            var Compressor: CompressorConstructor
+
             namespace AntiCompressor {
                 interface Settings extends ig.Entity.Settings {}
             }

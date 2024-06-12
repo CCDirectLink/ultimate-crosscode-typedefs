@@ -78,6 +78,8 @@ declare global {
       dashTimer: number;
       dashBlock: number;
       charging: ig.ENTITY.Player.Charging;
+      floating: boolean;
+      levelUpNotifier: sc.PlayerLevelNotifier;
       isPlayer: true;
       
       updateSkinAura(this: this): void;

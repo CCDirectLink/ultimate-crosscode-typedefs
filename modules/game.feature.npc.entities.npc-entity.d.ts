@@ -22,9 +22,31 @@ declare global {
           xenoEvent: sc.MapInteractIcon;
         }
       }
-      interface NPC extends ig.Class {
+      interface NPC extends sc.ActorEntity {
+        characterName: sc.Character
+        character: sc.Character
+        npcStates: sc.NpcState[]
+        npcStatesData: sc.NpcState.Settings[]
+        activeStateIdx: number
+        configs: Record<string, ig.ActorConfig>
+        hidden: boolean
         interactEntry: sc.MapInteractEntry;
+        eventBlocked: boolean
+        deferredReset: boolean
+        npcEffects: ig.EffectSheet
         interactIcons: ig.ENTITY.NPC.InteractIcons;
+        lookAtAction: ig.Action
+        eventCal: ig.EventCall
+        doPostEventAction: boolean
+        xenoDialog: ig.ENTITY.XenoDialog
+        xenoDialogGui: sc.XenoDialogIcon
+        permaEffect: ig.ENTITY.Effect
+        displayName?: unknown
+        displayTrigger?: unknown
+        displayNameRandom?: string
+        respawn: { pos: Vec3 }
+        hideHandle?: unknown
+        hideManager: ig.EntityHideManager
 
         setMapInteractIcon(this: this, npcState: sc.NpcState): void;
       }
@@ -44,12 +66,16 @@ declare global {
       ARENA = 4,
     }
 
+    namespace NpcState {
+      interface Settings {}
+    }
+
     interface NpcState extends ig.Class {
       npcEventType: sc.NPC_EVENT_TYPE;
       npcEventObj: ig.Event;
     }
     interface NpcStateConstructor extends ImpactClass<NpcState> {
-      new (settings: unknown, entity: ig.ENTITY.NPC): NpcState;
+      new (settings: sc.NpcState.Settings, entity: ig.ENTITY.NPC): NpcState;
     }
     var NpcState: NpcStateConstructor;
   }

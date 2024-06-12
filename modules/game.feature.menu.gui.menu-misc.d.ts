@@ -32,6 +32,17 @@ declare global {
       var MAX_PER_ROW: number;
     }
 
+    interface PercentNumber extends ig.GuiElementBase {
+      number: sc.NumberGui
+
+      setNumber(this: this, number: number, skipTransition?: Nullable<boolean>): void
+      setColor(this: this, color: sc.GUI_NUMBER_COLOR): void;
+    }
+    interface PercentNumberConstructor extends ImpactClass<PercentNumber> {
+      new(maxValue: number, settings?: sc.NumberGui.Settings): PercentNumber
+    }
+    var PercentNumber: PercentNumberConstructor
+
     interface NewUnlockButton extends sc.ButtonGui {}
     interface NewUnlockButtonConstructor extends ImpactClass<NewUnlockButton> {}
     var NewUnlockButton: NewUnlockButtonConstructor;

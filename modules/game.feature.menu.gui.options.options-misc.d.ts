@@ -50,5 +50,18 @@ declare global {
       new (changeCallback: (value: number) => void, snap?: boolean, fill?: boolean): OptionFocusSlider;
     }
     var OptionFocusSlider: OptionFocusSliderConstructor
+
+    interface OptionLangPopUp extends ig.BoxGui {
+        buttongroup: sc.ButtonGroup
+        buttons: Record<sc.LANGUAGE, sc.ButtonGui>
+        active: boolean
+
+        createButtons(this: this): void
+        show(this: this, anchor: sc.OPTION_GUIS_DEFS.LANGUAGE, callback?: () => void): void
+    }
+    interface OptionLangPopUpConstructor extends ImpactClass<OptionLangPopUp> {
+      new (): OptionLangPopUp;
+    }
+    var OptionLangPopUp: OptionLangPopUpConstructor;
   }
 }

@@ -27,6 +27,7 @@ declare global {
 
     interface EnemyBaseParamLine extends ig.GuiElementBase {
       gfx: ig.Image;
+      number: sc.NumberGui
       icon: number;
     }
     interface EnemyBaseParamLineConstructor extends ImpactClass<EnemyBaseParamLine> {}
@@ -44,5 +45,26 @@ declare global {
       new (): EnemyDrops;
     }
     var EnemyDrops: EnemyDropsConstructor;
+
+    interface EnemyResistence extends ig.GuiElementBase {
+      res: [sc.PercentNumber, sc.PercentNumber, sc.PercentNumber, sc.PercentNumber]
+      lines: [sc.EnemyElementSlopeLine, sc.EnemyElementSlopeLine, sc.EnemyElementSlopeLine, sc.EnemyElementSlopeLine]
+      images: [ig.ImageGui, ig.ImageGui, ig.ImageGui, ig.ImageGui]
+
+    }
+    interface EnemyResistenceConstructor extends ImpactClass<EnemyResistence> {
+      new(): EnemyResistence
+    }
+    var EnemyResistence: EnemyResistenceConstructor
+
+    interface EnemyElementSlopeLine extends ig.GuiElementBase {
+      slope: sc.SlopeLine
+      line: ig.ColorGui
+      hasLine: boolean
+    }
+    interface EnemyElementSlopeLineConstructor extends ImpactClass<EnemyElementSlopeLine> {
+      new(): EnemyElementSlopeLine
+    }
+    var EnemyElementSlopeLine: EnemyElementSlopeLineConstructor
   }
 }

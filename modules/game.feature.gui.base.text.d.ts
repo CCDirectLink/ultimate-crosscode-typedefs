@@ -2,7 +2,7 @@
 // requires impact.feature.gui.gui
 // requires game.feature.font.font-system
 
-export {};
+export { };
 
 declare global {
   namespace sc {
@@ -24,13 +24,13 @@ declare global {
       font: ig.MultiFont;
       text: sc.TextLike;
       textBlock: ig.TextBlock;
-      beepSound: ig.Sound;
+      beepSound: Nullable<ig.Sound>
       bleepDelay: number;
       playSound: boolean;
       stopped: boolean;
 
       onVisibilityChange(this: this, visible: boolean): void;
-      setBeepSound(this: this, beepSound: ig.Sound): void;
+      setBeepSound(this: this, beepSound: Nullable<ig.Sound>): void;
       setMaxWidth(this: this, maxWidth?: Nullable<number>): void;
       setTextAlign(this: this, align: ig.Font.ALIGN): void;
       setTextSpeed(this: this, textSpeed: ig.TextBlock.SPEED): void;
@@ -44,7 +44,7 @@ declare global {
       resume(this: this): void;
     }
     interface TextGuiConstructor extends ImpactClass<TextGui> {
-      new (text: sc.TextLike, settings?: sc.TextGui.Settings): TextGui;
+      new(text: sc.TextLike, settings?: sc.TextGui.Settings): TextGui;
     }
     var TextGui: TextGuiConstructor;
   }

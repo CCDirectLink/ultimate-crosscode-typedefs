@@ -5,6 +5,7 @@ export {};
 declare global {
   namespace sc {
     interface BaseMenu extends ig.GuiElementBase {
+      gfx: ig.Image;
       visible: boolean;
 
       addObservers(this: this): void;
@@ -17,5 +18,20 @@ declare global {
       new (): BaseMenu;
     }
     var BaseMenu: BaseMenuConstructor;
+
+    interface ListInfoMenu extends sc.BaseMenu, sc.Model.Observer {
+      hotkeyHelp: sc.ButtonGui;
+      hotkeySort: sc.ButtonGui;
+      helpGui: sc.HelpScreen;
+      list: sc.ListTabbedPane;
+      info?: ig.BoxGui;
+      sortMenu: sc.SortMenu;
+
+      createHelpGui(this: this): void;
+    }
+    interface ListInfoMenuConstructor extends ImpactClass<ListInfoMenu> {
+      new (list: sc.ListTabbedPane, info?: ig.BoxGui, disableSorting?: boolean): ListInfoMenu;
+    }
+    var ListInfoMenu: ListInfoMenuConstructor;
   }
 }

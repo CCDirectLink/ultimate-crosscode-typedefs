@@ -55,6 +55,7 @@ declare global {
         duration?: number;
         group?: string;
         angle?: Vec2;
+        rotateFace?: number;
       }
     }
     interface EffectSheet extends ig.JsonLoadable {

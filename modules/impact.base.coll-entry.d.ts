@@ -23,20 +23,55 @@ declare global {
       }
     }
     interface CollEntry extends ig.Class {
+      entity: ig.Entity
+      _active: boolean
+      _inCollisionMap: boolean
+      _killed: boolean
       type: COLLTYPE;
+      shape: ig.COLLSHAPE;
       size: Vec3;
+      alwaysRender: boolean
+      ignoreCollision: boolean
       weight: number;
+      friction: { ground: number, air: number, terrain: number, ignoreTerrain: boolean }
+      accelSpeed: number
+      maxVel: number
+      maxZVel: number
       relativeVel: number;
+      bounciness: number
       zBounciness: number;
+      minBounceBelocity: number
       zGravityFactor: number;
+      float: { height: number, variance: number, maxSpeed: number, acel: number }
       pos: Vec3;
-      level: number;
+      level: string;
       baseZPos: number;
       shadow: CollEntry.Shadow;
       vel: Vec3;
+      pushVel: Vec2
+      accelDir: Vec2
+      parentColl?: ig.CollEntry
+      totalBlockTimer: number
+      partlyBlockTimer: number
+      updated: number
+      _collData: {
+        collided: boolean
+        frameVel: Vec3
+        blockDir: Vec2
+        slipped: boolean
+        zBaseUncertain: boolean
+        zPush: boolean
+        skipPhysics: boolean
+        forceMoveFrameVel: boolean
+        groundEntry: ig.CollEntry
+        groundEntryOffset: Vec2
+        overlapEntryFactor: number
+        noSlipping: boolean
+      }
 
-      setSize(x: number, y: number, z: number): void;
+      setSize(this: this, x: number, y: number, z: number): void;
       setPadding(this: this, x: number, y: number): void;
+      getCenter(this: this, target?: Vec2): Vec2
     }
     interface CollEntryConstructor extends ImpactClass<CollEntry> {
       new (entity: ig.Entity): CollEntry;
@@ -45,6 +80,8 @@ declare global {
 
     interface CollTools {
       getDistVec2(coll1: CollEntry, coll2: CollEntry, dest: Vec2): Vec2;
+      isPostMoveOverHole(coll: ig.CollEntry, boo: boolean): boolean
+      hasWallCollide(coll: ig.CollEntry, maxAngle: number): boolean
     }
     var CollTools: CollTools;
   }

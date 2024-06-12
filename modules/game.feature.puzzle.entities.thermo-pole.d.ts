@@ -30,8 +30,12 @@ declare global {
             LONG64,
             SHORT,
         }
-    }
+  }
 
+  namespace ig.ENTITY {
+    namespace ElementPole {
+    }
+  }
     namespace ig.ENTITY {
         namespace ElementPole {
             interface Charge {

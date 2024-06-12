@@ -39,9 +39,12 @@ declare global {
       mapId: number;
 
       settings: unknown; // an empty object, appears to be unused
+      name?: Nullable<string>
       coll: ig.CollEntry;
       sprites: ig.CubeSprite[];
       entityAttached: ig.Entity.Attachable[];
+      _hidden: boolean;
+      _hideRequest: boolean;
       _killed: boolean;
       
       ballDestroyer?: boolean;
@@ -68,13 +71,18 @@ declare global {
       collideWith(this: this, entity: ig.Entity, dir: Vec2): void;
 
 
-      // below are functions not formally defined in ig.Entity,
+      // below are functions and variables not formally defined in ig.Entity,
       // but other relevant classes do check for them.
+      isBall?: boolean
+      terrain?: ig.TERRAIN
+
       varsChanged?(this: this): void;
-      isBallDestroyer?(this: this): boolean;
+      isBallDestroyer?(this: this, collPos: Vec3, collRes: { dir: Vec2 }, c?: boolean): boolean;
       isBallAdjust?(this: this): boolean;
       doBallAdjust?(this: this, pos: Vec3, dir: Vec2, size: Vec3, maxBounce: number): void;
-      ballHit?(this: this, ball: ig.Entity): boolean | void;
+      ballHit?(this: this, ball: ig.Entity, ...args: unknown[]): boolean | void;
+      isQuickMenuVisible?(this: this): boolean;
+      getQuickMenuSettings?(this: this): Omit<sc.QuickMenuTypesBaseSettings, 'entity'>;
     }
     interface EntityConstructor extends ImpactClass<Entity> {
       new (x: number, y: number, z: number, settings: ig.Entity.Settings): Entity;
@@ -85,6 +93,11 @@ declare global {
     enum WIPE_DIRECTION {
       NORTH = 1,
       SOUTH = 3
+    }
+
+    namespace EntityTools {
+      function getGroundEntity(entity: ig.Entity): Nullable<ig.Entity>
+      function isInScreen(entity: ig.Entity, x?: number, y?: number): boolean
     }
 
     enum COLLTYPE {
@@ -114,10 +127,12 @@ declare global {
       interface Settings extends ig.Entity.Settings {}
     }
     interface AnimatedEntity extends ig.Entity {
+      animSheet: ig.AnimationSheet
       animState: ig.AnimationState;
+      animSpeedFactor: number
       currentAnim: string;
 
-      initAnimations(this: this, sheet: ig.AnimationSheet | string | unknown): void;
+      initAnimations(this: this, sheet?: ig.AnimationSheet | string | unknown): void;
       setCurrentAnim(this: this, name: string, reset?: boolean, followUp?: Nullable<string>, force?: boolean, callbackOnFinish?: boolean): void;
     }
     interface AnimatedEntityConstructor extends ImpactClass<AnimatedEntity> {

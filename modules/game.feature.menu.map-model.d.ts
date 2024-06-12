@@ -104,6 +104,7 @@ declare global {
       }
     }
     interface MapModel extends ig.GameAddon, sc.Model {
+      activeLandmarks: Record<string, Record<string, { active: boolean }>>
       areas: { [name: string]: sc.MapModel.Area };
       currentArea: sc.AreaLoadable;
 
@@ -114,7 +115,10 @@ declare global {
       validateCurrentPlayerFloor(this: this): void;
       getLandmark(this: this, landmark: string, area: string): sc.MapModel.Area.Landmark;
       getCurrentAreaLandmark(this: this, landmark: string): sc.MapModel.Area.Landmark;
+      getCurrentAreaName(this: this): ig.LangLabel
       getAreaName(this: this, a?: string, b?: boolean, c?: boolean): string;
+      getCurrentMapName(this: this, returnQuestionMarkIfItsCurrentMap?: boolean): ig.LangLabel
+      getMapName(this: this, map: string): ig.LangLabel;
       getVisitedArea(this: this, area: string): boolean;
       getChestCount(this: this, key: string): number;
     }
@@ -123,5 +127,11 @@ declare global {
     }
     var MapModel: MapModelConstructor;
     var map: sc.MapModel;
+
+    enum MAP_EVENT {
+      LANDMARK_ADDED = 1,
+      PLAYER_AREA_CHANGED = 2,
+      MAP_ENTERED = 3,
+    }
   }
 }

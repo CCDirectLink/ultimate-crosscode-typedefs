@@ -43,10 +43,14 @@ declare global {
       undoTransform(this: this): void;
     }
 
-    namespace GUI {
+    interface Gui extends ig.GameAddon {
+      namedGuiElements: Record<string, unknown>
     }
-    interface GUI {}
-    var GUI: GUI;
+    interface GuiConstructor extends ImpactClass<Gui> {
+      new(): Gui
+    }
+    var Gui: GuiConstructor
+
 
     enum GUI_ALIGN {
       Y_TOP,
@@ -206,7 +210,7 @@ declare global {
       setAlign(this: this, x: ig.GUI_ALIGN, y: ig.GUI_ALIGN): void;
       isVisible(this: this): boolean;
       getChildGuiIndex(this: this, gui: ig.GuiElementBase): number;
-      getChildGuiByIndex(this: this, index: number): ig.GuiElementBase;
+      getChildGuiByIndex(this: this, index: number): ig.GuiHook;
       addChildGui(this: this, guiElement: ig.GuiElementBase): void;
       insertChildGui(this: this, guiElement: ig.GuiElementBase, index: number): void;
       removeChildGui(this: this, guiElement: ig.GuiElementBase): void;

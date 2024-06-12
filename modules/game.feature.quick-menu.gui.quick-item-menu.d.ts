@@ -5,14 +5,25 @@
 // requires game.feature.menu.gui.list-boxes
 // requires game.feature.menu.gui.menu-misc
 
-export {};
+export { };
 
 declare global {
     namespace sc {
+        interface QuickItemArrow extends ig.GuiElementBase {
+            flipX: boolean
+            flipY: boolean
+            bottomAnchor: boolean
+
+            setPosition(this: this, x: number, y: number, flipX?: boolean, flipY?: boolean, bottomAnchor?: boolean): void
+        }
+        interface QuickItemArrowConstructor extends ImpactClass<QuickItemArrow> {
+            new(): QuickItemArrow
+        }
+        var QuickItemArrow: QuickItemArrowConstructor
         interface QuickItemMenu extends ig.BoxGui {
             list: sc.ButtonListBox;
             buttongroup: sc.ButtonGroup;
-            
+
             updateList(this: this, skipSounds: boolean): void;
             addFavoriteOverlay(this: this, button: sc.ItemBoxButton): void;
         }

@@ -18,11 +18,18 @@ declare global {
       }
     }
     interface PlayerBaseEntity extends ig.ENTITY.Combatant {
+      configs: {
+        normal: ig.ActorConfig;
+        aiming: ig.ActorConfig;
+      };
+      maxJumpHeight: number;
       guard: PlayerBaseEntity.Guard;
 
       damageShield(this: this, damage: number): boolean;
     }
-    interface PlayerBaseEntityConstructor extends ImpactClass<PlayerBaseEntity> {}
+    interface PlayerBaseEntityConstructor extends ImpactClass<PlayerBaseEntity> {
+      new(x: number, y: number, z: number, settings: ig.Entity.Settings): PlayerBaseEntity
+    }
     var PlayerBaseEntity: PlayerBaseEntityConstructor;
   }
 }

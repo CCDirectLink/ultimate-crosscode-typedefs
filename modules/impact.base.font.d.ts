@@ -121,6 +121,7 @@ declare global {
       prerender(this: this): void;
       clearPrerendered(this: this): void;
       reset(this: this): void;
+      setSpeed(this: this, speed: ig.TextBlock.SPEED): void
       isFinished(this: this): boolean;
       update(this: this): void;
       draw(this: this, x: number, y: number): void;

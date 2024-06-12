@@ -5,8 +5,18 @@ export {};
 
 declare global {
   namespace sc {
-    interface BlackWhiteBox extends ig.BoxGui {}
-    interface BlackWhiteBoxConstructor extends ImpactClass<BlackWhiteBox> {}
+    enum ArrowBoxGui$POINTER { NONE = 0, TOP_LEFT = 1, BOTTOM_LEFT = 2, TOP_RIGHT = 3, BOTTOM_RIGHT = 4 }
+    namespace ArrowBoxGui {
+      type POINTER = ArrowBoxGui$POINTER
+    }
+    interface ArrowBoxGui extends ig.BoxGui { }
+    interface ArrowBoxGuiConstructor extends ImpactClass<ArrowBoxGui> {
+      new(sizeX: number, sizeY: number, pointerType: sc.ArrowBoxGui.POINTER): ArrowBoxGui
+    }
+    var ArrowBoxGui: ArrowBoxGuiConstructor
+
+    interface BlackWhiteBox extends ig.BoxGui { }
+    interface BlackWhiteBoxConstructor extends ImpactClass<BlackWhiteBox> { }
     var BlackWhiteBox: BlackWhiteBoxConstructor;
 
     interface CenterBoxGui extends ig.GuiElementBase {
@@ -41,5 +51,13 @@ declare global {
       new (entity: ig.Entity, text: string, time: number, align?: SmallBoxAlign, offY?: number): SmallEntityBox;
     }
     let  SmallEntityBox: SmallEntityBoxConstructor;
+
+    interface SmallBlackBoxGui extends ig.BoxGui {
+      text: unknown
+    }
+    interface SmallBlackBoxGuiConstructor extends ImpactClass<SmallBlackBoxGui> {
+      new(width: number): SmallBlackBoxGui
+    }
+    var SmallBlackBoxGui: SmallBlackBoxGuiConstructor
   }
 }

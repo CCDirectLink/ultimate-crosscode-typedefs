@@ -43,5 +43,6 @@ declare global {
       BEACH_WATER = 23,
       BEACH_SAND = 24,
     }
+    var TERRAIN_DEFAULT: ig.TERRAIN.NORMAL
   }
 }

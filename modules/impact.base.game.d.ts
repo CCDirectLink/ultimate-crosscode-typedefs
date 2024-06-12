@@ -48,20 +48,32 @@ declare global {
       paused: boolean;
       mapName: string;
       entities: ig.Entity[];
+      shownEntities: ig.Entity[];
+      levels: Record<string, {
+        height?: number 
+        collision?: sc.MapModel.MapLayer
+        maps?: ig.ChunkedMap[]
+      }>
+      maxLevel: number
+      minLevelZ: number
+      masterLevel: number
       events: ig.EventManager;
+      renderer: ig.Renderer2d;
       physics: ig.Physics;
       playerEntity: ig.ENTITY.Player;
+      marker: string
       addons: Game.Addons;
 
+      getLevelHeight(this: this, level: number | string): number
       getEntityByName<E extends ig.Entity>(this: this, name: string): E;
       getEntitiesInCircle(
         center: Vec3,
         radius: number,
         yScale: number,
         zHeight: number,
-        dir: Vec2,
-        startAngle: number,
-        endAngle: number,
+        dir?: Vec2,
+        startAngle?: number,
+        endAngle?: number,
         exception?: ig.Entity,
         moreExceptions?: ig.Entity[],
         rectangular?: boolean
@@ -73,7 +85,7 @@ declare global {
       createPlayer(this: this): void;
       getErrorData(this: this, gameInfo: Record<string, unknown>): void;
       setPaused(this: this, paused: boolean): void;
-      spawnEntity<E extends ig.Entity, S extends ig.Entity.Settings>(
+      spawnEntity<E extends ig.Entity, S extends ig.Entity.Settings>(this: this,
         entity: string | (new (x: number, y: number, z: number, settings: S) => E),
         x: number,
         y: number,
@@ -83,6 +95,7 @@ declare global {
       ): E;
       reset(this: this): void;
       teleport(
+        this: this,
         mapName: string,
         marker?: Nullable<ig.TeleportPosition>,
         hint?: ig.Game.TeleportLoadHint,
@@ -90,11 +103,17 @@ declare global {
         reloadCache?: Nullable<boolean>,
       ): void;
       isTeleporting(this: this): boolean;
+      preloadLevel(this: this, mapName: string): void;
       // TODO: map data
-      loadLevel(this: this, data: any, clearCache?: boolean, reloadCache?: boolean): void;
+      loadLevel(this: this, data: sc.MapModel.Map, clearCache?: boolean, reloadCache?: boolean): void;
       loadingComplete(this: this): void;
       update(this: this): void;
       varsChangedDeferred(this: this): void;
+
+      trace(
+        this: this, res: ig.Physics.TraceResult, x: number, y: number, z: number, vx: number, vy: number,
+        width: number, height: number, zHeight: number, collType: ig.COLLTYPE,
+        entryException: null, collisionList: any[], onGround?: boolean): boolean;
     }
     interface GameConstructor extends ImpactClass<Game> {
       new (): Game;

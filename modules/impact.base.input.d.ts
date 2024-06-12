@@ -157,7 +157,9 @@ declare global {
     interface Input extends ig.Class {
       bindings: Record<ig.KEY, ig.Input.KnownAction> & Record<ig.KEY, string>;
       actions: Record<ig.KEY, boolean>;
+      currentDevice: ig.INPUT_DEVICES
       mouse: Vec2;
+      mouseGuiActive: boolean;
       ignoreKeyboard: boolean;
       
       keydown(this: this, action: LiteralUnion<ig.Input.KnownAction>): boolean;

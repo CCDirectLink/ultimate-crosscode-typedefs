@@ -19,9 +19,14 @@ declare global {
       scale: number;
       contextScale: number;
       systemFontScale: number;
+      skipMode: boolean
+      timeFactor: number;
+      totalTimeFactor: number;
+      rawTick: number;
       tick: number;
       actualTick: number;
       ingameTick: number;
+      clock: ig.Timer;
       context: CanvasRenderingContext2D;
 
       getScreenFromMapPos(this: this, dest: Vec2, x: number, y: number): Vec2;

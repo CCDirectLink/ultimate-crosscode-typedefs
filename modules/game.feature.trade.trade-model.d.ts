@@ -43,6 +43,7 @@ declare global {
     interface TradeModel extends ig.GameAddon, sc.Model {
       traders: Record<string, sc.TradeModel.Trader>;
 
+      onStoragePreLoad(this: this, save: ig.SaveSlot.Data): void
       getFoundTrader(this: this, key: string): sc.TradeModel.FoundTrader;
     }
     interface TradeModelConstructor extends ImpactClass<TradeModel> {

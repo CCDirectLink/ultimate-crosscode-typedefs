@@ -40,6 +40,19 @@ declare global {
         let TimersModel: TimersModelConstructor;
         let timers: TimersModel;
         
+        namespace TimerEntry {
+            interface Data {
+                name: string
+                mode: sc.TIMER_TYPES
+                timer: number
+                duration: number
+                millis: number
+                temp: boolean
+                stopped: boolean
+                area?: string
+                quest?: { quest: string, index: number }
+            }
+        }
         interface TimerEntry extends ig.Class {
             name: string;
             mode: sc.TIMER_TYPES;
@@ -49,6 +62,8 @@ declare global {
             millis: boolean;
             area?: Nullable<string>;
             quest?: Nullable<string>;
+
+            getSaveData(this: this): sc.TimerEntry.Data
         }
         interface TimerEntryContstructor extends ImpactClass<TimerEntry> {
             new(name: string, mode: sc.TIMER_TYPES, duration: number, area?: string, temp?: boolean, millis?: boolean, quest?: string): TimerEntry;

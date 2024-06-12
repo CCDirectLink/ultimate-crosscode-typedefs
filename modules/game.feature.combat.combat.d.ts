@@ -35,8 +35,9 @@ declare global {
       effects: sc.Combat.Effects;
       active: boolean;
 
+      isEnemyAnalyzable(this: this, enemyType: string): boolean
       canShowBoostedEntry(this: this, enemyName: string, isBoss: boolean): boolean;
-      showHitEffect(this: this, entity: ig.Entity, hitPos: Vec3, hitDegree: sc.ATTACK_TYPE, hitElement: sc.ELEMENT, shielded: boolean, critical: boolean, ignoreSounds: boolean): ig.ENTITY.Effect;
+      showHitEffect(this: this, entity: ig.Entity, hitPos: Vec3, hitDegree: sc.ATTACK_TYPE, hitElement: sc.ELEMENT, shielded: boolean, critical: boolean, ignoreSounds: boolean, spriteFilter: number[]): ig.ENTITY.Effect;
       showPerfectDashEffect(this: this, target: ig.ActorEntity): void;
       getElementMode(this: this, combatant: ig.ENTITY.Combatant): sc.ELEMENT;
       isInCombat(this: this, combatant: ig.ENTITY.Combatant): boolean;

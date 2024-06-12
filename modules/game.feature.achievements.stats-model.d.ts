@@ -6,6 +6,7 @@ export {};
 declare global {
   namespace sc {
     interface StatsModel extends ig.GameAddon {
+      values: Record<string, Record<string, any>>
       statsEnabled: boolean;
 
       set(this: this, stat: string, value: number): void;

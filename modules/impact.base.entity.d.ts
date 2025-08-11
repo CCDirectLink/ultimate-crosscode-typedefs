@@ -103,6 +103,7 @@ declare global {
     namespace EntityTools {
       function getGroundEntity(entity: ig.Entity): Nullable<ig.Entity>;
       function isInScreen(entity: ig.Entity, x?: number, y?: number): boolean;
+      function addEntityColorOverlay(entity: ig.AnimatedEntity, overlay: ig.ColorOverlay, noMultiGroup: boolean): void;
     }
 
     enum COLLTYPE {

@@ -32,6 +32,7 @@ declare global {
         setCarry(this: this, spawnEffects?: boolean): void;
         setStandby(this: this, spawnEffects?: boolean): void;
         setRespawn(this: this): void;
+        ballHit(this: this, ballLike: ig.BallLike, blockDir?: Vec2): boolean;
         varsChanged(this: this): void;
         checkNonSourceInactive(this: this): void;
       }
@@ -160,6 +161,7 @@ declare global {
       ): void;
       setMergeEntity(this: this, mergeEntity: ig.Entity): void;
       clearAbsorbState(this: this): void;
+      ballHit(this: this, ballLike: ig.BallLike, blockDir?: Vec2): boolean;
       overlapActivateCheck(this: this): void;
       killCloseRegenDestruct(this: this, radius: number, exception?: ig.Entity): void;
       onPhysicsSquish(this: this): void;

@@ -16,6 +16,8 @@ declare global {
       bombSnap: boolean;
       squishRespawn: boolean;
       effects: { sheet: ig.EffectSheet };
+
+      ballHit(this: this, ballLike: ig.BallLike, blockDir?: Vec2): boolean;
     }
     interface SlidingBlockConstructor extends ImpactClass<SlidingBlock> {
       new (

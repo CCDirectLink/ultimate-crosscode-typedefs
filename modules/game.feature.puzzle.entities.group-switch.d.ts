@@ -10,7 +10,9 @@ declare global {
     }
   }
   namespace ig.ENTITY {
-    interface GroupSwitch extends ig.AnimatedEntity {}
+    interface GroupSwitch extends ig.AnimatedEntity {
+      ballHit(this: this, ballLike: ig.BallLike, blockDir?: Vec2): boolean;
+    }
     interface GroupSwitchConstructor extends ImpactClass<GroupSwitch> {
       new (x: number, y: number, z: number, settings: unknown): GroupSwitch;
     }

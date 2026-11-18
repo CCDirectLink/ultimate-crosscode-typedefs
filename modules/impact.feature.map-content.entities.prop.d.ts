@@ -75,6 +75,7 @@ declare global {
         untriggerProp(this: this): void;
         varsChanged(this: this): void;
         changeInteract(this: this, interact: sc.PropInteract): void;
+        ballHit(this: this, ballLike: ig.BallLike, blockDir?: Vec2): boolean;
         _updateAnimations(this: this): void;
       }
       interface PropConstructor extends ImpactClass<Prop> {

@@ -96,7 +96,7 @@ declare global {
         groundGfx: ig.Image;
         condition: ig.VarCondition;
         startZ: number;
-        targetZ?: number;
+        targetZ: Nullable<number>;
         stopDelay: number;
         elevatorVel: number;
         destinations: ig.ENTITY.Elevator.Destination[];

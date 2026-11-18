@@ -17,7 +17,7 @@ declare global {
     namespace PropInteract {
       interface Settings {
         icon?: keyof typeof sc.PROP_INTERACT_ICONS;
-        event?: unknown;
+        event?: ig.EventStepBase.Settings[];
         permaEffect?: ig.EffectHandle.Settings;
         combatOkay?: boolean;
         cutsceneType?: ig.EVENT_TYPE;

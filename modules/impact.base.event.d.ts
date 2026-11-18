@@ -21,7 +21,7 @@ declare global {
         runType: ig.EventRunType,
         onStart?: Nullable<() => void>,
         onEnd?: Nullable<() => void>,
-        input?: unknown,
+        input?: Nullable<ig.EventCall.Input>,
         callEntity?: ig.Entity,
         data?: unknown,
       ): ig.EventCall;
@@ -50,6 +50,8 @@ declare global {
       interface EventAttached {
         onEventEndDetach(this: this, eventCall: ig.EventCall): void;
       }
+
+      type Input = Record<string, any>;
     }
     interface EventCall extends ig.Class {
       runType: ig.EventRunType;
@@ -67,7 +69,7 @@ declare global {
       callInlineEvent(
         this: this,
         event: ig.Event,
-        callData: { runCount: number },
+        input: ig.EventCall.Input,
       ): ig.EventCall.StackEntry;
       addEventAttached(this: this, eventAttached: ig.EventCall.EventAttached): void;
       setDone(this: this): void;
@@ -79,7 +81,7 @@ declare global {
     interface EventCallConstructor extends ImpactClass<EventCall> {
       new (
         event: ig.Event,
-        input: unknown | undefined,
+        input: ig.EventCall.Input | undefined,
         runType: ig.EventRunType,
         onStart?: Nullable<() => void>,
         onEnd?: Nullable<() => void>,
@@ -104,7 +106,7 @@ declare global {
       run(this: this, data?: unknown): boolean;
       getNext(this: this, data?: unknown): Nullable<ig.EventStepBase>;
       getInlineEvent?(this: this): ig.Event;
-      getInlineEventInput?(this: this): unknown;
+      getInlineEventInput?(this: this): ig.EventCall.Input;
     }
     interface EventStepBaseConstructor extends ImpactClass<EventStepBase> {}
     var EventStepBase: EventStepBaseConstructor;
@@ -112,8 +114,28 @@ declare global {
     namespace EVENT_STEP {}
 
     namespace Event {
+      /* incomplete */
+      type InputSignature = Record<
+        string,
+        {
+          _type:
+            | 'StringExpression'
+            | 'String'
+            | 'BooleanExpression'
+            | 'Boolean'
+            | 'NumberExpression'
+            | 'Number'
+            | 'Vec2'
+            | 'Vec3'
+            | 'VarName'
+            | 'Entity'
+            | 'LangLabel';
+        }
+      >;
+
       interface Settings {
         name?: string;
+        input?: ig.Event.InputSignature;
         steps: ig.EventStepBase.Settings[];
       }
 
@@ -158,29 +180,12 @@ declare global {
       labeledSteps: Record<string, ig.EventStepBase>;
       hints: string[];
       /* not complete */
-      inputSignature: Record<
-        string,
-        {
-          _type:
-            | 'StringExpression'
-            | 'String'
-            | 'BooleanExpression'
-            | 'Boolean'
-            | 'NumberExpression'
-            | 'Number'
-            | 'Vec2'
-            | 'Vec3'
-            | 'VarName'
-            | 'Entity'
-            | 'LangLabel';
-        }
-      >;
+      inputSignature: ig.Event.InputSignature;
 
       addHint(this: this, hint: string): void;
       hasHint(this: this, hint: string): void;
       clearCached(this: this): void;
-      /* i give up - krypek */
-      setupInput<T extends Record<string, unknown>>(this: this, b: T): ig.Event.Vars;
+      setupInput(this: this, input: ig.EventCall.Input): ig.Event.Vars;
     }
     interface EventConstructor extends ImpactClass<Event> {
       new (settings: ig.Event.Settings): Event;

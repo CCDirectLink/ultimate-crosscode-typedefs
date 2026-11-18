@@ -6,10 +6,38 @@ declare global {
   namespace sc {
     //note: not an impact class!
     interface Cutscene {
+      getLookAtEventSteps(
+        eventSteps: ig.EventStepBase.Settings[],
+        entity: ig.Entity,
+      ): ig.EventStepBase.Settings[];
+      _getLookAction(actor: ig.Event.GetEntity, entity: ig.Entity): ig.EventCall;
       startCutscene(
-        this: this,
         event: ig.Event,
-        input?: unknown,
+        input?: Nullable<ig.EventCall.Input>,
+        callEntity?: ig.Entity,
+      ): ig.EventCall;
+      startCombatCutscene(
+        event: ig.Event,
+        input?: Nullable<ig.EventCall.Input>,
+        callEntity?: ig.Entity,
+      ): ig.EventCall;
+      onEventStart(): void;
+      onCombatEventStart(): void;
+      onEventEnd(): void;
+      startMenuEvent(event: ig.Event, input?: Nullable<ig.EventCall.Input>): ig.EventCall;
+      onMenuEventStart(): void;
+      onMenuEventEnd(): void;
+      startAutoControlEvent(
+        event: ig.Event,
+        input?: Nullable<ig.EventCall.Input>,
+        callEntity?: ig.Entity,
+      ): ig.EventCall;
+      onAutoControlStart(): void;
+      onAutoControlEnd(): void;
+      startEvent(
+        type: ig.EVENT_TYPE,
+        event: ig.Event,
+        input?: Nullable<ig.EventCall.Input>,
         callEntity?: ig.Entity,
       ): ig.EventCall;
     }

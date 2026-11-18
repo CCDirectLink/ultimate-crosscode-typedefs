@@ -76,6 +76,7 @@ declare global {
         isActive(this: this): boolean;
         regenerate(this: this): boolean;
         regenComplete(this: this): void;
+        ballHit(this: this, ballLike: ig.BallLike, blockDir?: Vec2): boolean;
         destroy(this: this, spawnEffects?: boolean, startRegen?: boolean): void;
         varsChanged(this: this): void;
         throwDebris(this: this): void;

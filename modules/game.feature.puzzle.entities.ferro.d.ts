@@ -40,6 +40,52 @@ declare global {
         new (x: number, y: number, z: number, settings: ig.ENTITY.FerroSpot.Settings): FerroSpot;
       }
       var FerroSpot: FerroSpotConstructor;
+
+      namespace FerroLine {
+        interface Settings extends ig.Entity.Settings {
+          spot?: Nullable<ig.Event.GetEntity>;
+        }
+      }
+      interface FerroLine extends ig.Entity {
+        patterns: ig.ImagePatternSheet;
+        spotSetting?: Nullable<ig.Event.GetEntity>;
+        spot: Nullable<ig.ENTITY.FerroSpot>;
+        state: number;
+        timer: number;
+        _wm: ig.Config;
+
+        assignFerroSpot(this: this, spot: Nullable<ig.ENTITY.FerroSpot>): void;
+      }
+      interface FerroLineConstructor extends ImpactClass<FerroLine> {
+        new (x: number, y: number, z: number, settings: ig.ENTITY.FerroLine.Settings): FerroLine;
+      }
+      var FerroLine: FerroLineConstructor;
+
+      namespace FerroRespawner {
+        interface Settings extends ig.AnimatedEntity.Settings {}
+      }
+      interface FerroRespawner extends ig.AnimatedEntity {
+        state: number;
+        hits: number;
+        timer: number;
+        hitSound: ig.Sound;
+        _wm: ig.Config;
+        spot: Nullable<ig.ENTITY.FerroSpot>;
+
+        assignFerroSpot(this: this, spot: ig.ENTITY.FerroSpot): void;
+        updateState(this: this, animImmediately?: boolean): void;
+        ballHit(this: this, ballLike: ig.BallLike, blockDir?: Vec2): boolean;
+        updateHitAnim(this: this): void;
+      }
+      interface FerroRespawnerConstructor extends ImpactClass<FerroRespawner> {
+        new (
+          x: number,
+          y: number,
+          z: number,
+          settings: ig.ENTITY.FerroRespawner.Settings,
+        ): FerroRespawner;
+      }
+      var FerroRespawner: FerroRespawnerConstructor;
     }
   }
   namespace sc {
@@ -189,9 +235,12 @@ declare global {
     }
     var FerroEntity: FerroEntityConstructor;
 
+    namespace FerroWaveAttack {
+      interface Settings extends ig.Entity.Settings {}
+    }
     interface FerroWaveAttack extends ig.Entity, ig.BallLike {}
     interface FerroWaveAttackConstructor extends ImpactClass<FerroWaveAttack> {
-      new (x: number, y: number, z: number, settings: unknown): FerroWaveAttack;
+      new (x: number, y: number, z: number, settings: sc.FerroWaveAttack.Settings): FerroWaveAttack;
     }
     var FerroWaveAttack: FerroWaveAttackConstructor;
   }

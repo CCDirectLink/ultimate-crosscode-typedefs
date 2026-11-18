@@ -144,6 +144,7 @@ declare global {
         indestructible: boolean;
 
         _getVarPrefix(this: this): string;
+        ballHit(this: this, ballLike: ig.BallLike, blockDir?: Vec2): boolean;
         destroy(this: this): void;
         setDropped(this: this): void;
         dropItem(this: this): void;

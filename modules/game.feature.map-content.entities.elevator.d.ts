@@ -21,14 +21,7 @@ declare global {
       ground: sc.ElevatorType.Ground;
       markerDir: keyof typeof ig.ActorEntity.FACE4;
       stuckProbility: number;
-      switchEntry: {
-        pos: Vec3;
-        size: Vec3;
-        collType?: ig.COLLTYPE;
-        anims: ig.AnimationSheet.Settings;
-        showFx: { sheet: string; name: string };
-        hideFx: { sheet: string; name: string };
-      };
+      switchEntry: sc.ElevatorSwitchEntity.Data;
       noEndRunble?: boolean;
       speed?: number;
       partyOffset?: Vec2[];
@@ -148,11 +141,30 @@ declare global {
       interface Settings {
         ground: ig.ENTITY.Elevator;
         // elevatorData: sc.ELEVATOR_TYPE
+        data: Data;
+      }
+      interface Data {
+        pos: Vec3;
+        size: Vec3;
+        anims: ig.AnimationSheet.Settings;
+        collType?: ig.COLLTYPE;
+        showFx?: ig.EffectHandle.Settings;
+        hideFx?: ig.EffectHandle.Settings;
       }
     }
     interface ElevatorSwitchEntity extends ig.AnimatedEntity {
       groundEntity: ig.ENTITY.Elevator;
       interactEntry: sc.MapInteractEntry;
+      moving: boolean;
+      active: boolean;
+      interactIcons: Record<'up' | 'down', sc.MapInteractIcon>;
+      showFx: Nullable<ig.EffectHandle>;
+      hideFx: Nullable<ig.EffectHandle>;
+
+      setActive(this: this, active: boolean, noShowFx?: boolean): void;
+      setMoving(this: this, moving: boolean): void;
+      _updateState(this: this): void;
+      onInteraction(this: this): void;
     }
     interface ElevatorSwitchEntityConstructor extends ImpactClass<ElevatorSwitchEntity> {
       new (

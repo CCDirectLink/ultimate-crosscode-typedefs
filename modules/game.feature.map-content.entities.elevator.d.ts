@@ -51,7 +51,7 @@ declare global {
       soundHandle: Nullable<ig.SoundHandle>;
 
       startMoveSound(this: this, sound: ig.Sound): void;
-      endMoveSound(this: this, playAgain?: boolean): void;
+      endMoveSound(this: this, playAgain?: ig.Sound): void;
       onStoragePreLoad(this: this): void;
     }
     interface ElevatorModelConstructor extends ImpactClass<ElevatorModel> {

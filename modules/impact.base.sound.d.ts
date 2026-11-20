@@ -251,7 +251,7 @@ declare global {
     }
     var TrackWebAudio: TrackWebAudioConstructor;
 
-    interface SoundDefault extends ig.Class, SoundCommon {
+    interface SoundDefault extends ig.Class {
       group: string;
       multiAudio: ig.MultiAudio;
       volume: number;
@@ -260,13 +260,14 @@ declare global {
 
       clone(this: this): ig.SoundDefault;
       clearCached(this: this): void;
+      play(this: this, pos?: boolean, settings?: SoundPlaySettings): ig.SoundHandle;
       stop(this: this): void;
     }
     interface SoundDefaultConstructor
       extends ImpactClass<SoundDefault>, SoundConstructorCommon<ig.SoundDefault> {}
     var SoundDefault: SoundDefaultConstructor;
 
-    interface SoundWebAudio extends ig.Class, SoundCommon {
+    interface SoundWebAudio extends ig.Class {
       group: string;
       webAudioBuffer: ig.WebAudioBuffer;
       volume: number;
@@ -274,6 +275,7 @@ declare global {
 
       clone(this: this): SoundWebAudio;
       clearCached(this: this): void;
+      play(this: this, pos?: boolean, settings?: SoundPlaySettings): ig.SoundHandle;
       stop(this: this): void;
     }
     interface SoundWebAudioConstructor
@@ -282,7 +284,7 @@ declare global {
     }
     var SoundWebAudio: SoundWebAudioConstructor;
 
-    interface SoundHandleBase extends ig.Class, SoundCommon {
+    interface SoundHandleBase extends ig.Class {
       pos: null | {
         point: Vec2;
         entity: ig.Entity | null;
@@ -310,6 +312,7 @@ declare global {
       _updateEntityPos(this: this, force?: boolean): void;
       isLooping(this: this): boolean;
       getPlayTime(this: this): number;
+      play(this: this): void;
       stop(this: this): void;
     }
     interface SoundHandleBaseConstructor extends ImpactClass<ig.SoundHandleBase> {
@@ -382,10 +385,6 @@ declare global {
       offset?: number;
       startTime?: number;
       speed?: number;
-    }
-
-    interface SoundCommon {
-      play(this: ig.Sound, pos?: boolean, settings?: SoundPlaySettings): ig.SoundHandle;
     }
 
     namespace Sound$FORMAT {

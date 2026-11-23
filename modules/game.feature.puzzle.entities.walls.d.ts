@@ -41,7 +41,7 @@ declare global {
       skipRender: boolean;
       noNavMapBlock: boolean;
 
-      updateWallBlockers(this: this, isActive?: boolean): void;
+      updateWallBlockers(this: this, noEffects?: boolean): void;
     }
     interface WallBaseConstructor extends ImpactClass<WallBase> {
       new (x: number, y: number, z: number, settings: WallBase.Settings): WallBase;

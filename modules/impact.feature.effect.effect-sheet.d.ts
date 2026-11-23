@@ -76,7 +76,7 @@ declare global {
         name: string,
         target: ig.Entity,
         settings?: Nullable<ig.EffectSheet.SpawnSettings>,
-      ): ig.ENTITY.Effect;
+      ): Nullable<ig.ENTITY.Effect>;
       spawnFixed(
         this: this,
         name: string,
@@ -167,7 +167,7 @@ declare global {
         this: this,
         target: ig.Entity,
         settings?: Nullable<ig.EffectSheet.SpawnSettings>,
-      ): ig.ENTITY.Effect;
+      ): Nullable<ig.ENTITY.Effect>;
       spawnFixed(
         this: this,
         x: number,

@@ -138,7 +138,7 @@ declare global {
   }
   namespace sc {
     namespace ElevatorSwitchEntity {
-      interface Settings {
+      interface Settings extends ig.AnimatedEntity.Settings {
         ground: ig.ENTITY.Elevator;
         // elevatorData: sc.ELEVATOR_TYPE
         data: Data;
